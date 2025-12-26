@@ -369,8 +369,9 @@
                         </div>
                     </div>
                     
-                    <div style="background-image: url('assets/images/simulador-trestelas.png'); background-size: contain; background-repeat: no-repeat; background-position: center;" class="w-full h-[600px] rounded-2xl sticky top-24">
-                    </div>
+                    <img src="assets/images/comofunciona_motorista.png" 
+                         alt="Como Funciona - Motorista" 
+                         class="w-full h-auto rounded-2xl shadow-2xl sticky top-24">
                 </div>
             </div>
             
@@ -439,8 +440,9 @@
                         </div>
                     </div>
                     
-                    <div style="background-image: url('assets/images/comofunciona_chapa.png'); background-size: contain; background-repeat: no-repeat; background-position: center;" class="w-full h-[600px] rounded-2xl sticky top-24">
-                    </div>
+                    <img src="assets/images/comofunciona_chapa.png" 
+                         alt="Como Funciona - Chapa" 
+                         class="w-full h-auto rounded-2xl shadow-2xl sticky top-24">
                 </div>
             </div>
             
@@ -509,8 +511,9 @@
                         </div>
                     </div>
                     
-                    <div style="background-image: url('assets/images/comofunciona_transportadora.png'); background-size: contain; background-repeat: no-repeat; background-position: center;" class="w-full h-[600px] rounded-2xl sticky top-24">
-                    </div>
+                    <img src="assets/images/comofunciona_transportadora.png" 
+                         alt="Como Funciona - Transportadora" 
+                         class="w-full h-auto rounded-2xl shadow-2xl sticky top-24">
                 </div>
             </div>
         </div>
@@ -631,68 +634,217 @@
     </section>
 
     <!-- APOIE -->
-    <section id="apoie" class="py-32 relative overflow-hidden" style="background-image: url('assets/images/apoiequemmove.png'); background-size: cover; background-position: center; min-height: 600px;">
-        <!-- Overlay gradiente sutil -->
-        <div style="background: linear-gradient(to bottom, rgba(2, 6, 23, 0.3), rgba(2, 6, 23, 0.7)); position: absolute; inset: 0;"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-5xl mx-auto">
-                <!-- Título Grande -->
-                <div class="text-center mb-16">
-                    <h2 class="text-6xl md:text-7xl font-black text-white mb-6 drop-shadow-2xl" style="text-shadow: 2px 4px 8px rgba(0,0,0,0.8);">
-                        Apoie Quem<br>
-                        <span class="text-gradient" style="background: linear-gradient(135deg, #F1C40F 0%, #FF8C00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">MOVE</span> o Brasil
-                    </h2>
-                    <p class="text-2xl text-white drop-shadow-lg" style="text-shadow: 1px 2px 4px rgba(0,0,0,0.8);">
-                        100% gratuito para trabalhadores.<br>
-                        Sua contribuição faz a diferença.
-                    </p>
+    <section id="apoie" class="py-20 bg-loomper-dark">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+                    Apoie Quem <span class="text-gradient">MOVE</span> o Brasil
+                </h2>
+                <p class="text-xl text-gray-300">
+                    100% gratuito para trabalhadores. Sua contribuição faz a diferença.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                <!-- Coluna Esquerda: Imagem -->
+                <div class="order-2 md:order-1">
+                    <img src="assets/images/apoiequemmove.png" 
+                         alt="Apoie Quem Move o Brasil" 
+                         class="w-full rounded-2xl shadow-2xl border-4 border-loomper-gold/20">
                 </div>
                 
-                <!-- Chave PIX destacada -->
-                <div class="bg-black/50 backdrop-blur-md rounded-3xl p-8 mb-8 border-2 border-loomper-gold/30">
-                    <p class="text-2xl font-bold text-white mb-4 text-center">Chave PIX</p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <div class="bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl border border-loomper-gold/50">
-                            <code class="text-2xl font-mono text-loomper-gold"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="610d0e0e0c1104134f00111121060c00080d4f020e0c">[email&#160;protected]</a></code>
+                <!-- Coluna Direita: PIX e Botões -->
+                <div class="order-1 md:order-2 space-y-8">
+                    <!-- Chave PIX -->
+                    <div class="bg-loomper-card p-8 rounded-2xl border-2 border-loomper-gold/20">
+                        <p class="text-2xl font-bold text-white mb-4 text-center">Chave PIX</p>
+                        <div class="bg-loomper-dark p-4 rounded-xl mb-4">
+                            <code class="text-xl text-loomper-gold font-mono break-all"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb878484869b8e99c58a9b9bab8c868a8287c5888486">[email&#160;protected]</a></code>
                         </div>
-                        <button onclick="copyPix()" class="bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-8 py-4 rounded-xl transition transform hover:scale-105 shadow-2xl">
-                            <i class="fas fa-copy mr-2"></i> Copiar Chave
+                        <button onclick="copyPix()" class="w-full bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-4 rounded-xl transition transform hover:scale-105">
+                            <i class="fas fa-copy mr-2"></i> Copiar Chave PIX
                         </button>
                     </div>
+                    
+                    <!-- Botões de Valores -->
+                    <div class="bg-loomper-card p-8 rounded-2xl border-2 border-loomper-gold/20">
+                        <p class="text-lg font-bold text-white mb-4 text-center">Escolha o valor:</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="copyPix()" class="bg-loomper-orange hover:bg-loomper-gold text-white font-black py-6 rounded-xl transition transform hover:scale-105 shadow-xl">
+                                <div class="text-3xl">R$ 20</div>
+                            </button>
+                            <button onclick="copyPix()" class="bg-loomper-orange hover:bg-loomper-gold text-white font-black py-6 rounded-xl transition transform hover:scale-105 shadow-xl">
+                                <div class="text-3xl">R$ 50</div>
+                            </button>
+                            <button onclick="copyPix()" class="bg-loomper-orange hover:bg-loomper-gold text-white font-black py-6 rounded-xl transition transform hover:scale-105 shadow-xl">
+                                <div class="text-3xl">R$ 75</div>
+                            </button>
+                            <button onclick="copyPix()" class="bg-white hover:bg-loomper-gold text-loomper-dark font-black py-6 rounded-xl transition transform hover:scale-105 shadow-xl">
+                                <div class="text-2xl">💛 Outro<br>valor</div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center text-sm text-gray-400">
+                        🇧🇷 Toda contribuição é voluntária e fortalece o ecossistema da logística automotiva brasileira.
+                    </p>
                 </div>
-                
-                <!-- Botões de valores - Grandes e clicáveis -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <button onclick="copyPix()" class="group bg-loomper-orange hover:bg-loomper-gold text-white font-black py-8 rounded-2xl transition transform hover:scale-110 shadow-2xl border-4 border-white/20 hover:border-loomper-gold">
-                        <div class="text-4xl mb-2">R$</div>
-                        <div class="text-5xl">20</div>
-                    </button>
-                    <button onclick="copyPix()" class="group bg-loomper-orange hover:bg-loomper-gold text-white font-black py-8 rounded-2xl transition transform hover:scale-110 shadow-2xl border-4 border-white/20 hover:border-loomper-gold">
-                        <div class="text-4xl mb-2">R$</div>
-                        <div class="text-5xl">50</div>
-                    </button>
-                    <button onclick="copyPix()" class="group bg-loomper-orange hover:bg-loomper-gold text-white font-black py-8 rounded-2xl transition transform hover:scale-110 shadow-2xl border-4 border-white/20 hover:border-loomper-gold">
-                        <div class="text-4xl mb-2">R$</div>
-                        <div class="text-5xl">75</div>
-                    </button>
-                    <button onclick="copyPix()" class="group bg-white/90 hover:bg-loomper-gold text-loomper-dark font-black py-8 rounded-2xl transition transform hover:scale-110 shadow-2xl border-4 border-white/20 hover:border-loomper-gold">
-                        <div class="text-3xl mb-2">💛</div>
-                        <div class="text-3xl">Outro<br>valor</div>
-                    </button>
-                </div>
-                
-                <p class="text-center text-lg text-white mt-12 drop-shadow-lg" style="text-shadow: 1px 2px 4px rgba(0,0,0,0.8);">
-                    🇧🇷 Toda contribuição é voluntária e fortalece o ecossistema da logística automotiva brasileira.
-                </p>
             </div>
         </div>
     </section>
 
     <!-- CADASTRO -->
-    <section id="cadastro" class="py-32 relative overflow-hidden" style="background-image: url('assets/images/sejaumpioneiro-formulariodigital.png'); background-size: cover; background-position: center; min-height: 800px;">
-        <!-- Overlay gradiente sutil -->
-        <div style="background: linear-gradient(to bottom, rgba(2, 6, 23, 0.75), rgba(2, 6, 23, 0.85)); position: absolute; inset: 0;"></div>
+    <section id="cadastro" class="py-20 bg-gradient-to-b from-loomper-card to-loomper-dark">
+        <div class="container mx-auto px-4">
+            <!-- Título -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+                    Seja um <span class="text-gradient">Pioneiro</span>
+                </h2>
+                <p class="text-xl text-gray-300">
+                    Cadastre-se agora e garanta acesso prioritário quando lançarmos
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+                <!-- Coluna Esquerda: Imagem -->
+                <div class="order-2 md:order-1">
+                    <img src="assets/images/sejaumpioneiro-formulariodigital.png" 
+                         alt="Seja um Pioneiro" 
+                         class="w-full rounded-2xl shadow-2xl border-4 border-loomper-gold/20">
+                </div>
+                
+                <!-- Coluna Direita: Benefícios + Formulário -->
+                <div class="order-1 md:order-2 space-y-8">
+                    <!-- Card de Benefícios Compacto -->
+                    <div class="bg-gradient-to-br from-loomper-orange to-loomper-gold p-6 rounded-2xl shadow-xl">
+                        <h3 class="text-xl font-bold text-loomper-dark mb-3">🎁 Benefícios Exclusivos:</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-loomper-dark text-sm">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-lg"></i>
+                                <span class="font-bold">Selo Beta Tester</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-lg"></i>
+                                <span class="font-bold">Prioridade 6 meses</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-lg"></i>
+                                <span class="font-bold">Suporte direto</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formulário -->
+                    <form name="loomper_leads" method="POST" action="/sucesso.html" data-netlify="true" class="bg-loomper-card p-8 rounded-2xl border-2 border-loomper-gold/20 shadow-xl">
+                        <input type="hidden" name="form-name" value="loomper_leads">
+                        <input type="hidden" name="user_id" id="user_id">
+                        <input type="hidden" name="timestamp" id="timestamp">
+                        <input type="hidden" name="referrer" id="referrer">
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-white">Nome Completo *</label>
+                                <input type="text" name="nome" required 
+                                       placeholder="Seu nome completo"
+                                       class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-white">WhatsApp * <span class="text-gray-400 font-normal">(DDD + 8 ou 9 dígitos)</span></label>
+                                <input type="tel" name="whatsapp" id="whatsapp" required 
+                                       placeholder="(11) 99999-9999"
+                                       class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-white">E-mail *</label>
+                                <input type="email" name="email" required 
+                                       placeholder="seu@email.com"
+                                       class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-white">UF *</label>
+                                    <select name="uf" id="uf" required 
+                                            class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white">
+                                        <option value="" class="bg-loomper-dark">Selecione...</option>
+                                        <option value="AC" class="bg-loomper-dark">Acre</option>
+                                        <option value="AL" class="bg-loomper-dark">Alagoas</option>
+                                        <option value="AP" class="bg-loomper-dark">Amapá</option>
+                                        <option value="AM" class="bg-loomper-dark">Amazonas</option>
+                                        <option value="BA" class="bg-loomper-dark">Bahia</option>
+                                        <option value="CE" class="bg-loomper-dark">Ceará</option>
+                                        <option value="DF" class="bg-loomper-dark">Distrito Federal</option>
+                                        <option value="ES" class="bg-loomper-dark">Espírito Santo</option>
+                                        <option value="GO" class="bg-loomper-dark">Goiás</option>
+                                        <option value="MA" class="bg-loomper-dark">Maranhão</option>
+                                        <option value="MT" class="bg-loomper-dark">Mato Grosso</option>
+                                        <option value="MS" class="bg-loomper-dark">Mato Grosso do Sul</option>
+                                        <option value="MG" class="bg-loomper-dark">Minas Gerais</option>
+                                        <option value="PA" class="bg-loomper-dark">Pará</option>
+                                        <option value="PB" class="bg-loomper-dark">Paraíba</option>
+                                        <option value="PR" class="bg-loomper-dark">Paraná</option>
+                                        <option value="PE" class="bg-loomper-dark">Pernambuco</option>
+                                        <option value="PI" class="bg-loomper-dark">Piauí</option>
+                                        <option value="RJ" class="bg-loomper-dark">Rio de Janeiro</option>
+                                        <option value="RN" class="bg-loomper-dark">Rio Grande do Norte</option>
+                                        <option value="RS" class="bg-loomper-dark">Rio Grande do Sul</option>
+                                        <option value="RO" class="bg-loomper-dark">Rondônia</option>
+                                        <option value="RR" class="bg-loomper-dark">Roraima</option>
+                                        <option value="SC" class="bg-loomper-dark">Santa Catarina</option>
+                                        <option value="SP" class="bg-loomper-dark">São Paulo</option>
+                                        <option value="SE" class="bg-loomper-dark">Sergipe</option>
+                                        <option value="TO" class="bg-loomper-dark">Tocantins</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-white">Cidade *</label>
+                                    <input type="text" name="cidade" required 
+                                           placeholder="Sua cidade"
+                                           class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-white">Você é: *</label>
+                                <select name="perfil" required 
+                                        class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white">
+                                    <option value="" class="bg-loomper-dark">Selecione...</option>
+                                    <option value="motorista" class="bg-loomper-dark">Motorista Cegonheiro</option>
+                                    <option value="chapa" class="bg-loomper-dark">Chapa / Ajudante</option>
+                                    <option value="transportadora" class="bg-loomper-dark">Transportadora</option>
+                                    <option value="investidor" class="bg-loomper-dark">Investidor</option>
+                                    <option value="outro" class="bg-loomper-dark">Outro</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-white">Código de Indicação <span class="text-gray-400 font-normal">(Opcional)</span></label>
+                                <input type="text" name="referral_code" 
+                                       placeholder="Código do amigo que te indicou"
+                                       class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
+                            </div>
+                            
+                            <div class="flex items-start gap-3 bg-loomper-dark/50 p-4 rounded-lg">
+                                <input type="checkbox" name="aceite_termos" required class="mt-1 w-5 h-5">
+                                <label class="text-sm text-gray-300">
+                                    Aceito os <button type="button" onclick="openModal('modal-termos')" class="text-loomper-gold hover:underline font-bold">Termos de Uso</button> 
+                                    e <button type="button" onclick="openModal('modal-privacidade')" class="text-loomper-gold hover:underline font-bold">Política de Privacidade</button>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-loomper-orange hover:bg-loomper-gold text-white font-black py-4 rounded-xl text-lg transition transform hover:scale-105 shadow-xl">
+                                🚀 ENTRAR NA LISTA
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
         
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-3xl mx-auto">
@@ -863,7 +1015,7 @@
                     <ul class="space-y-2 text-gray-400">
                         <li><button onclick="openModal('modal-termos')" class="hover:text-loomper-gold transition">Termos de Uso</button></li>
                         <li><button onclick="openModal('modal-privacidade')" class="hover:text-loomper-gold transition">Política de Privacidade</button></li>
-                        <li><a href="/cdn-cgi/l/email-protection#fa969595978a9f88d49b8a8aba9d979b9396d4999597" class="hover:text-loomper-gold transition">Fale Conosco</a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#55393a3a382530277b342525153238343c397b363a38" class="hover:text-loomper-gold transition">Fale Conosco</a></li>
                     </ul>
                 </div>
                 
@@ -876,7 +1028,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/cdn-cgi/l/email-protection#315d5e5e5c4154431f50414171565c50585d1f525e5c" class="hover:text-loomper-gold transition">
+                            <a href="/cdn-cgi/l/email-protection#f995969694899c8bd7988989b99e94989095d79a9694" class="hover:text-loomper-gold transition">
                                 <i class="fas fa-envelope mr-2"></i> E-mail
                             </a>
                         </li>
@@ -967,7 +1119,7 @@
                     <li>Equipe técnica experiente</li>
                 </ul>
                 <p class="font-bold text-loomper-gold">Para solicitar nosso Pitch Deck completo:</p>
-                <a href="/cdn-cgi/l/email-protection#d0b3bfbea4b1a4bf90bcbfbfbda0b5a2feb3bfbdfeb2a2efa3a5b2bab5b3a4ed83bfa5f0999e8695838499949f82f0919e9a9ff0fdf083bfbcb9b3b9a4b113771373bff0b4b5f080b9a4b3b8f094b5b3bbf6b2bfb4a9ed9fbc1371f0b5a1a5b9a0b5f09cbfbfbda0b5a2fcf5e094f5e091f5e094f5e09184b5beb8bff0b9bea4b5a2b5a3a3b5f0b5bdf0b3bfbeb8b5b3b5a2f0bdb1b9a3f0a3bfb2a2b5f0b1f0bfa0bfa2a4a5beb9b4b1b4b5f0b4b5f0b9bea6b5a3a4b9bdb5bea4bffef5e094f5e091f5e094f5e09180bfa2f0b6b1a6bfa2fcf0b5bea6b9b5bdf0bff080b9a4b3b8f094b5b3bbf0b5f0bff09e9491f0a0b1a2b1f0b1be1371bcb9a3b5fef5e094f5e091f5e094f5e09191a4b5beb3b9bfa3b1bdb5bea4b5" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
+                <a href="/cdn-cgi/l/email-protection#0b6864657f6a7f644b676464667b6e792568646625697934787e69616e687f3658647e2b42455d4e585f424f44592b4a4541442b262b5864676268627f6ac8acc8a8642b6f6e2b5b627f68632b4f6e68602d69646f72364467c8aa2b6e7a7e627b6e2b476464667b6e79272e3b4f2e3b4a2e3b4f2e3b4a5f6e6563642b62657f6e796e78786e2b6e662b686465636e686e792b666a62782b786469796e2b6a2b647b64797f7e65626f6a6f6e2b6f6e2b62657d6e787f62666e657f64252e3b4f2e3b4a2e3b4f2e3b4a5b64792b6d6a7d6479272b6e657d626e662b642b5b627f68632b4f6e68602b6e2b642b454f4a2b7b6a796a2b6a65c8aa6762786e252e3b4f2e3b4a2e3b4f2e3b4a4a7f6e65686264786a666e657f6e" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
                     Solicitar Pitch Deck
                 </a>
             </div>
@@ -992,7 +1144,7 @@
                     <li>Impacto social mensurável (ESG)</li>
                 </ul>
                 <p class="font-bold text-loomper-gold">Entre em contato:</p>
-                <a href="/cdn-cgi/l/email-protection#45262a2b3124312a05292a2a283520376b262a286b27377a3630272f20263178162a3065020a1300170b0a656865162a292c262c312486e286e62a652120650124212a3665162a262c242c3663272a213c780a2986e4652034302c352065092a2a28352037696075016075046075016075041120282a36652c2b3120372036362065202865262a2b2d20262037652a36652124212a3665362a262c242c366520652c28352426312a65212a65092a2a28352037653524372465242b86e4292c362065212065352a2986e8312c262436653586ff27292c2624366b607501607504607501607504152a37652324332a376965202b332c2028652a650b010465206528243120372c242c3665212c36352a2b86e833202c366b6075016075046075016075040431202b262c2a362428202b3120" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
+                <a href="/cdn-cgi/l/email-protection#1e7d71706a7f6a715e727171736e7b6c307d7173307c6c216d6b7c747b7d6a234d716b3e5951485b4c50513e333e4d7172777d776a7fddb9ddbd713e7a7b3e5a7f7a716d3e4d717d777f776d387c717a67235172ddbf3e7b6f6b776e7b3e527171736e7b6c323b2e5a3b2e5f3b2e5a3b2e5f4a7b73716d3e77706a7b6c7b6d6d7b3e7b733e7d7170767b7d7b6c3e716d3e7a7f7a716d3e6d717d777f776d3e7b3e77736e7f7d6a713e7a713e527171736e7b6c3e6e7f6c7f3e7f70ddbf72776d7b3e7a7b3e6e7172ddb36a777d7f6d3e6edda47c72777d7f6d303b2e5a3b2e5f3b2e5a3b2e5f4e716c3e787f68716c323e7b7068777b733e713e505a5f3e7b3e737f6a7b6c777f776d3e7a776d6e7170ddb3687b776d303b2e5a3b2e5f3b2e5a3b2e5f5f6a7b707d77716d7f737b706a7b" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
                     Solicitar Dados
                 </a>
             </div>
@@ -1017,7 +1169,7 @@
                     <li>Dashboard executivo customizado</li>
                 </ul>
                 <p class="font-bold text-loomper-gold">Agende uma demonstração:</p>
-                <a href="/cdn-cgi/l/email-protection#94f7fbfae0f5e0fbd4f8fbfbf9e4f1e6baf7fbf9baf6e6abe7e1f6fef1f7e0a9c7fbe1b4d9dbdac0d5d0dbc6d5b4b9b4c7fbf8fdf7fde0f557335737fbb4f0f1b4d0f1f9fbfae7e0e6f557335737fbb2f6fbf0eda9dbf85735b4f1e5e1fde4f1b4d8fbfbf9e4f1e6b8b1a4d0b1a4d5b1a4d0b1a4d5c0f1f9fbe7b4fdfae0f1e6f1e7e7f1b4f1f9b4f7fbfafcf1f7f1e6b4f5b4fdfae0f1f3e6f557335737fbb4d5c4ddb4e4f5e6f5b4572ef8e0fdf9f5b4f9fdf8fcf5b4f5e1e0fbf9fbe0fde2f5bab1a4d0b1a4d5b1a4d0b1a4d5c4fbe6b4f2f5e2fbe6b8b4f5f3f1faf0f1f9b4e1f9f5b4f0f1f9fbfae7e0e6f557335737fbb4f1b4f1fae2fdf1f9b4fbb4dad0d5bab1a4d0b1a4d5b1a4d0b1a4d5d5e0f1faf7fdfbe7f5f9f1fae0f1" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
+                <a href="/cdn-cgi/l/email-protection#70131f1e0411041f301c1f1f1d0015025e131f1d5e12024f0305121a1513044d231f05503d3f3e2431343f2231505d50231f1c1913190411b3d7b3d31f5014155034151d1f1e03040211b3d7b3d31f56121f14094d3f1cb3d150150105190015503c1f1f1d0015025c55403455403155403455403124151d1f0350191e0415021503031550151d50131f1e1815131502501150191e0415170211b3d7b3d31f50312039500011021150b3ca1c04191d11501d191c1811501105041f1d1f041906115e554034554031554034554031201f02501611061f025c501117151e14151d50051d115014151d1f1e03040211b3d7b3d31f501550151e0619151d501f503e34315e5540345540315540345540313104151e13191f03111d151e0415" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
                     Agendar Demo
                 </a>
             </div>
@@ -1042,7 +1194,7 @@
                     <li>Integração via API</li>
                 </ul>
                 <p class="font-bold text-loomper-gold">Saiba mais:</p>
-                <a href="/cdn-cgi/l/email-protection#d9bab6b7adb8adb699b5b6b6b4a9bcabf7bab6b4f7bbabe6aaacbbb3bcbaade48ab6acf98a9c9e8c8b989d968b98f9f4f990b7adbcabbcaaaabcf9bcb4f989b8abbabcabb0b8ffbbb6bda0e496b51a78f9bca8acb0a9bcf995b6b6b4a9bcabf5fce99dfce998fce99dfce9988dbcb4b6aaf9b0b7adbcabbcaaaabcf9bcb4f9bab6b7b1bcbabcabf9b6aaf9bbbcb7bcbf1a74bab0b6aaf9bcf9bdb8bdb6aaf9bab6b4a9b6abadb8b4bcb7adb8b0aaf9a9b8abb8f9a9abbcbab0bfb0bab81a7e1a7ab6f9bdbcf9b8a91a6ab5b0babcaaf7fce99dfce998fce99dfce99889b6abf9bfb8afb6abf5f9bcb7afb0bcb4f9b6f9979d98f9bcf9b4b8adbcabb0b8b0aaf9bdbcf9a9b8abbabcabb0b8f7fce99dfce998fce99dfce99898adbcb7bab0b6aab8b4bcb7adbc" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
+                <a href="/cdn-cgi/l/email-protection#583b37362c392c371834373735283d2a763b3735763a2a672b2d3a323d3b2c650b372d780b1d1f0d0a191c170a1978757811362c3d2a3d2b2b3d783d357808392a3b3d2a31397e3a373c216517349bf9783d292d31283d7814373735283d2a747d681c7d68197d681c7d68190c3d35372b7831362c3d2a3d2b2b3d783d35783b3736303d3b3d2a78372b783a3d363d3e9bf53b31372b783d783c393c372b783b373528372a2c39353d362c39312b7828392a3978282a3d3b313e313b399bff9bfb37783c3d7839289beb34313b3d2b767d681c7d68197d681c7d681908372a783e392e372a74783d362e313d35783778161c19783d7835392c3d2a3139312b783c3d7828392a3b3d2a3139767d681c7d68197d681c7d6819192c3d363b31372b39353d362c3d" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
                     Conhecer Benefícios
                 </a>
             </div>
@@ -1067,7 +1219,7 @@
                     <li>ROI mensurável e comprovado</li>
                 </ul>
                 <p class="font-bold text-loomper-gold">Agende uma demonstração:</p>
-                <a href="/cdn-cgi/l/email-protection#f4979b9a8095809bb4989b9b99849186da979b99da9686cb8781969e919780c9a79b81d4a0a6b5baa7a4bba6a0b5b0bba6b5d4d9d4bd9a80918691878791d49199d4a79b9881375337579bd2969b908dc9bb983755d49185819d8491d4b89b9b99849186d8d1c4b0d1c4b5d1c4b0d1c4b5a091999b87d49d9a80918691878791d49199d4979b9a9c91979186d495d4879b9881375337579bd4979b998498918095d49091d49391878037579bd49091d492869b8095d491d4979b9984989d959a9791dad1c4b0d1c4b5d1c4b0d1c4b5a49b86d49295829b86d8d49593919a909199d4819995d49091999b9a87808695375337579bd491d4919a829d9199d49bd4bab0b5dad1c4b0d1c4b5d1c4b0d1c4b5b580919a979d9b879599919a8091" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
+                <a href="/cdn-cgi/l/email-protection#197a76776d786d765975767674697c6b377a7674377b6b266a6c7b737c7a6d244a766c394d4b58574a49564b4d585d564b5839343950776d7c6b7c6a6a7c397c74394a76756cdabedaba763f7b767d60245675dab8397c686c70697c3955767674697c6b353c295d3c29583c295d3c29584d7c74766a3970776d7c6b7c6a6a7c397c74397a7677717c7a7c6b3978396a76756cdabedaba76397a767469757c6d78397d7c397e7c6a6ddaba76397d7c397f6b766d78397c397a767469757078777a7c373c295d3c29583c295d3c295849766b397f786f766b3539787e7c777d7c74396c7478397d7c7476776a6d6b78dabedaba76397c397c776f707c74397639575d58373c295d3c29583c295d3c2958586d7c777a70766a78747c776d7c" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
                     Ver Demonstração
                 </a>
             </div>
