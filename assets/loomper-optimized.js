@@ -1,483 +1,425 @@
-/*
- * ========================================
- * LOOMPER — LANDING PAGE OPTIMIZED JS
- * v2.0 — Netlify Forms Compatible
- * ========================================
+/**
+ * ============================================
+ * LOOMPER - JAVASCRIPT FUNCTIONS
+ * Optimized for Landing Page Interactions
+ * ============================================
  */
 
-// ========================================
-// CONFIG
-// ========================================
-const CONFIG = {
-  WHATSAPP_NUMBER: '5511965858142',
-  PIX_KEY: 'contato@loomper.com.br',
-  CONTACT_EMAIL: 'contato@loomper.com.br',
-  DOMAIN: window.location.origin,
-  CREDITS_MOTORISTA: 100,
-  CREDITS_CHAPA: 0,
-  CREDITS_TRANSPORTADORA: 500
-};
-
-// ========================================
-// UTILITIES
-// ========================================
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
-
-const Utils = {
-  generateID: () => {
-    const prefix = 'LMP';
-    const random = Math.random().toString(36).substring(2, 10).toUpperCase();
-    return `${prefix}-${random}`;
-  },
-  
-  getOrCreateUserID: () => {
-    let userId = localStorage.getItem('loomper_user_id');
-    if (!userId) {
-      userId = Utils.generateID();
-      localStorage.setItem('loomper_user_id', userId);
-    }
-    return userId;
-  },
-  
-  getReferrerID: () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const ref = urlParams.get('ref');
-    if (ref) {
-      localStorage.setItem('loomper_referrer', ref);
-      return ref;
-    }
-    return localStorage.getItem('loomper_referrer') || '';
-  },
-  
-  formatWhatsAppLink: (number, text) => {
-    const cleanNumber = number.replace(/\D/g, '');
-    const encodedText = encodeURIComponent(text);
-    return `https://wa.me/${cleanNumber}?text=${encodedText}`;
-  }
-};
-
-// ========================================
-// TRACKING
-// ========================================
-const Tracking = {
-  events: [],
-  
-  track: (eventName, data = {}) => {
-    const event = {
-      event: eventName,
-      timestamp: new Date().toISOString(),
-      ...data
-    };
-    Tracking.events.push(event);
-    console.log('📊 Track:', eventName, data);
-  },
-  
-  getSummary: () => {
-    return {
-      total_events: Tracking.events.length,
-      first_visit: Tracking.events[0]?.timestamp,
-      last_event: Tracking.events[Tracking.events.length - 1]?.timestamp,
-      events: Tracking.events
-    };
-  }
-};
-
-// ========================================
-// HEADER
-// ========================================
-function initHeader() {
-  const header = $('#header');
-  if (!header) return;
-  
-  let lastScroll = 0;
-  
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-      header.classList.add('scrolled');
+// ============================================
+// NAVBAR SCROLL EFFECT
+// ============================================
+window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
     } else {
-      header.classList.remove('scrolled');
+        navbar.classList.remove('scrolled');
     }
-    
-    lastScroll = currentScroll;
-  });
-}
+});
 
-// ========================================
-// MOBILE MENU
-// ========================================
-function initMobileMenu() {
-  const menuToggle = $('#menuToggle');
-  const navMobile = $('#navMobile');
-  const body = document.body;
-  
-  if (!menuToggle || !navMobile) return;
-  
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navMobile.classList.toggle('active');
-    body.classList.toggle('menu-open');
-    
-    Tracking.track('mobile_menu_toggle', {
-      action: navMobile.classList.contains('active') ? 'open' : 'close'
-    });
-  });
-  
-  // Fechar ao clicar em link
+// ============================================
+// MOBILE MENU TOGGLE
+// ============================================
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
 
-  $$('.nav-link-mobile').forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.classList.remove('active');
-      navMobile.classList.remove('active');
-      body.classList.remove('menu-open');
-    });
-  });
-}
-
-// ========================================
-// PROFILE SELECTION
-// ========================================
-function initProfileSelection() {
-  // Salvar perfil ao clicar nos CTAs
-
-  $$('[data-profile]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const profile = e.currentTarget.dataset.profile;
-      localStorage.setItem('loomper_profile', profile);
-      
-      Tracking.track('profile_selected', { profile });
-    });
-  });
-  
-  // Preencher automaticamente o select se houver perfil salvo
-  const savedProfile = localStorage.getItem('loomper_profile');
-  if (savedProfile) {
-    const profileSelect = $('#user_type');
-    if (profileSelect) {
-      const profileMap = {
-        motorista: 'Motorista',
-        chapa: 'Chapa / Ajudante',
-        transportadora: 'Transportadora',
-        investidor: 'Investidor'
-      };
-      
-      if (profileMap[savedProfile]) {
-        profileSelect.value = profileMap[savedProfile];
-        Tracking.track('profile_auto_filled', { profile: savedProfile });
-      }
-    }
-  }
-}
-
-// ========================================
-// TABS (SIMULADORES)
-// ========================================
-function initTabs() {
-  const tabBtns = $$('.tab-btn');
-  const tabPanels = $$('.tab-panel');
-  
-  if (!tabBtns.length || !tabPanels.length) return;
-  
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetTab = btn.dataset.tab;
-      
-      // Remover active de todos
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabPanels.forEach(p => p.classList.remove('active'));
-      
-      // Ativar o selecionado
-      btn.classList.add('active');
-      $(`#panel-${targetTab}`)?.classList.add('active');
-      
-      Tracking.track('tab_clicked', { tab: targetTab });
-    });
-  });
-  
-  // Botões "Ver simulação" nos cards de perfil
-
-  $$('.btn-simulate').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = btn.dataset.target;
-      
-      // Scroll para a seção de simuladores
-      $('#como-funciona')?.scrollIntoView({ behavior: 'smooth' });
-      
-      // Ativar a tab correta após scroll
-      setTimeout(() => {
-        const targetBtn = $(`.tab-btn[data-tab="${target}"]`);
-        if (targetBtn) targetBtn.click();
-      }, 600);
-      
-      Tracking.track('simulate_clicked', { profile: target });
-    });
-  });
-}
-
-// ========================================
-// FORM — VALIDAÇÃO E ENVIO NATIVO
-// ========================================
-function initForm() {
-  const form = $('#waitlistForm');
-  if (!form) return;
-  
-  // Preencher campos hidden ANTES do submit
-  const userId = Utils.getOrCreateUserID();
-  const referrerId = Utils.getReferrerID();
-  
-  console.log('🆔 User ID:', userId);
-  if (referrerId) console.log('👥 Referrer:', referrerId);
-  
-  $('#user_id').value = userId;
-  $('#referrer_id').value = referrerId;
-  
-  // Validação de WhatsApp em tempo real
-  const whatsappInput = $('#whatsapp');
-  const inviteInput = $('#invite_phone');
-  
-  [whatsappInput, inviteInput].forEach(input => {
-    if (!input) return;
-    input.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/\D/g, '');
-    });
-  });
-  
-  // Submit — DEIXAR O NETLIFY PROCESSAR NATIVAMENTE
-  form.addEventListener('submit', (e) => {
-    // Validar campos
-    const userType = $('#user_type').value;
-    const name = $('#name').value.trim();
-    const whatsapp = $('#whatsapp').value.trim();
-    const email = $('#email').value.trim();
-    const uf = $('#uf').value;
-    const city = $('#city').value.trim();
-    const terms = $('#terms').checked;
-    
-    if (!userType || !name || !whatsapp || !email || !uf || !city || !terms) {
-      e.preventDefault();
-      alert('Por favor, preencha todos os campos obrigatórios.');
-      return false;
-    }
-    
-    // Validar WhatsApp
-    if (whatsapp.length < 10 || whatsapp.length > 11) {
-      e.preventDefault();
-      alert('WhatsApp inválido. Digite DDD + número (10 ou 11 dígitos).');
-      $('#whatsapp').focus();
-      return false;
-    }
-    
-    // Validar email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      e.preventDefault();
-      alert('E-mail inválido.');
-      $('#email').focus();
-      return false;
-    }
-    
-    // Calcular créditos iniciais
-    let credits = 0;
-    if (userType === 'Motorista') {
-      credits = CONFIG.CREDITS_MOTORISTA;
-    } else if (userType === 'Transportadora') {
-      credits = CONFIG.CREDITS_TRANSPORTADORA;
-    } else if (userType === 'Chapa / Ajudante') {
-      credits = CONFIG.CREDITS_CHAPA;
-    }
-    $('#credits_initial').value = credits;
-    
-    // Timestamp aceite de termos
-    $('#terms_accepted_at').value = new Date().toISOString();
-    
-    // Journey summary
-    $('#user_journey').value = JSON.stringify(Tracking.getSummary());
-    
-    // Tracking
-    Tracking.track('form_submit_attempt', {
-      user_type: userType,
-      uf,
-      city
-    });
-    
-    // Desabilitar botão
-    const submitBtn = $('#submitBtn');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando...';
-    
-    // DEIXAR O FORM SUBMETER NATIVAMENTE
-    // O Netlify vai redirecionar automaticamente após o sucesso
-    return true;
-  });
-}
-
-// ========================================
-// PIX DONATION
-// ========================================
-function initPixDonation() {
-  const copyPixBtn = $('#copyPix');
-  const showQrBtn = $('#showQr');
-  const pixQrDiv = $('#pixQr');
-  const donateOtherBtn = $('#donateOther');
-  const customAmountDiv = $('#customAmount');
-  const confirmAmountBtn = $('#confirmAmount');
-  
-  // Copiar PIX
-  if (copyPixBtn) {
-    copyPixBtn.addEventListener('click', () => {
-      const pixKey = CONFIG.PIX_KEY;
-      navigator.clipboard.writeText(pixKey).then(() => {
-        copyPixBtn.textContent = '✓ Copiado!';
-        setTimeout(() => {
-          copyPixBtn.textContent = 'Copiar PIX';
-        }, 2000);
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('active');
         
-        Tracking.track('pix_copied', { key: pixKey });
-      });
+        // Toggle icon
+        const icon = this.querySelector('i');
+        if (icon.classList.contains('fa-bars')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
     });
-  }
-  
-  // Mostrar QR Code
-  if (showQrBtn && pixQrDiv) {
-    showQrBtn.addEventListener('click', () => {
-      const isVisible = pixQrDiv.style.display !== 'none';
-      pixQrDiv.style.display = isVisible ? 'none' : 'block';
-      showQrBtn.textContent = isVisible ? 'Ver QR Code' : 'Ocultar QR';
-      
-      if (!isVisible) {
-        // Gerar QR Code (usando API gratuita)
-        const pixKey = CONFIG.PIX_KEY;
-        const qrUrl = `https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${encodeURIComponent(pixKey)}`;
-        pixQrDiv.innerHTML = `<img src="${qrUrl}" alt="QR Code PIX" />`;
-        
-        Tracking.track('qr_code_shown');
-      }
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
     });
-  }
-  
-  // Botões de valores fixos
-
-  $$('.btn-donate').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const amount = btn.dataset.amount;
-      alert(`Obrigado! Por favor, faça uma transferência PIX de R$ ${amount} para: ${CONFIG.PIX_KEY}`);
-      
-      Tracking.track('donation_selected', { amount });
-    });
-  });
-  
-  // Outro valor
-  if (donateOtherBtn && customAmountDiv) {
-    donateOtherBtn.addEventListener('click', () => {
-      customAmountDiv.style.display = 'flex';
-      donateOtherBtn.style.display = 'none';
-    });
-  }
-  
-  if (confirmAmountBtn) {
-    confirmAmountBtn.addEventListener('click', () => {
-      const customAmount = $('#customAmountInput').value;
-      if (customAmount && customAmount > 0) {
-        alert(`Obrigado! Por favor, faça uma transferência PIX de R$ ${customAmount} para: ${CONFIG.PIX_KEY}`);
-        
-        Tracking.track('donation_custom', { amount: customAmount });
-        
-        customAmountDiv.style.display = 'none';
-        donateOtherBtn.style.display = 'inline-block';
-        $('#customAmountInput').value = '';
-      } else {
-        alert('Por favor, digite um valor válido.');
-      }
-    });
-  }
 }
 
-// ========================================
-// WHATSAPP FAB
-// ========================================
-function initWhatsAppFAB() {
-  const fab = $('#whatsappFab');
-  if (!fab) return;
-  
-  const userId = Utils.getOrCreateUserID();
-  const message = `Olá! Vim da landing page do Loomper Beta.\n\nMeu ID: ${userId}`;
-  
-  fab.href = Utils.formatWhatsAppLink(CONFIG.WHATSAPP_NUMBER, message);
-  
-  fab.addEventListener('click', () => {
-    Tracking.track('whatsapp_fab_clicked', { user_id: userId });
-  });
+// ============================================
+// TAB SYSTEM (SIMULADOR)
+// ============================================
+function changeTab(tabName) {
+    // Update tab buttons
+    const allTabs = document.querySelectorAll('.tab-btn');
+    allTabs.forEach(tab => tab.classList.remove('active'));
+    document.getElementById('tab-' + tabName).classList.add('active');
+    
+    // Update tab content
+    const allContent = document.querySelectorAll('.tab-content');
+    allContent.forEach(content => {
+        content.classList.add('hidden');
+        content.classList.remove('active');
+    });
+    
+    const activeContent = document.getElementById('content-' + tabName);
+    if (activeContent) {
+        activeContent.classList.remove('hidden');
+        activeContent.classList.add('active');
+    }
 }
 
-// ========================================
-// SUCCESS MODAL (se houver)
-// ========================================
-function initSuccessModal() {
-  const modal = $('#successModal');
-  if (!modal) return;
-  
-  const closeBtn = $('#modalClose');
-  const enterWhatsappBtn = $('#enterWhatsapp');
-  const inviteFriendsBtn = $('#inviteFriends');
-  
-  // Fechar modal
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      modal.setAttribute('aria-hidden', 'true');
-      modal.style.display = 'none';
-    });
-  }
-  
-  // Entrar no WhatsApp
-  if (enterWhatsappBtn) {
-    enterWhatsappBtn.addEventListener('click', () => {
-      const userId = Utils.getOrCreateUserID();
-      const message = `Olá! Acabei de me cadastrar no Beta do Loomper.\n\nMeu ID: ${userId}`;
-      window.open(Utils.formatWhatsAppLink(CONFIG.WHATSAPP_NUMBER, message), '_blank');
-      
-      Tracking.track('enter_whatsapp_group');
-    });
-  }
-  
-  // Convidar amigos
-  if (inviteFriendsBtn) {
-    inviteFriendsBtn.addEventListener('click', () => {
-      const userId = Utils.getOrCreateUserID();
-      const inviteLink = `${CONFIG.DOMAIN}?ref=${userId}`;
-      const shareMessage = `Olá! Estou no Beta fechado do LOOMPER, a evolução da conexão no transporte de veículos.\n\nEntre você também: ${inviteLink}`;
-      
-      navigator.clipboard.writeText(shareMessage).then(() => {
-        alert('✓ Link de convite copiado! Compartilhe com seus amigos.');
+// ============================================
+// PIX COPY FUNCTION
+// ============================================
+function copiarPix() {
+    const pixKey = 'loomper.app@gmail.com';
+    
+    // Create temporary textarea to copy
+    const tempInput = document.createElement('textarea');
+    tempInput.value = pixKey;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); // For mobile devices
+    
+    try {
+        document.execCommand('copy');
         
-        Tracking.track('invite_link_copied', { referrer_id: userId });
-      });
-    });
-  }
+        // Show feedback
+        const feedback = document.getElementById('pix-feedback');
+        if (feedback) {
+            feedback.style.opacity = '1';
+            setTimeout(() => {
+                feedback.style.opacity = '0';
+            }, 3000);
+        }
+        
+        // Visual feedback on the box
+        const pixBox = document.getElementById('pix-box');
+        if (pixBox) {
+            pixBox.style.borderColor = '#10B981';
+            pixBox.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+            setTimeout(() => {
+                pixBox.style.borderColor = '';
+                pixBox.style.backgroundColor = '';
+            }, 2000);
+        }
+        
+    } catch (err) {
+        console.error('Erro ao copiar:', err);
+        alert('Chave PIX: ' + pixKey);
+    }
+    
+    document.body.removeChild(tempInput);
 }
 
-// ========================================
-// INIT
-// ========================================
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('🚀 LOOMPER Optimized JS v2.0 Ativo');
-  
-  initHeader();
-  initMobileMenu();
-  initProfileSelection();
-  initTabs();
-  initForm();
-  initPixDonation();
-  initWhatsAppFAB();
-  initSuccessModal();
-  
-  // Track page view
-  Tracking.track('page_view', {
-    url: window.location.href,
-    referrer: document.referrer
-  });
-  
-  console.log('✅ Todas as funcionalidades carregadas');
+// ============================================
+// MODAL FUNCTIONS
+// ============================================
+function openModal(type) {
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    
+    if (!modal || !modalTitle || !modalBody) return;
+    
+    let title = '';
+    let content = '';
+    
+    switch(type) {
+        case 'investidor':
+            title = 'Investidor Anjo - Informações Estratégicas';
+            content = `
+                <div class="text-center py-6">
+                    <i class="fas fa-lock text-6xl text-gray-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold mb-4 text-white">Acesso Restrito</h4>
+                    <p class="mb-6 text-gray-400">
+                        Informações estratégicas sobre o pitch deck, métricas e projeções 
+                        estão disponíveis mediante solicitação formal.
+                    </p>
+                    <p class="text-sm text-gray-500 mb-8">
+                        Para garantir a confidencialidade das informações, solicitamos 
+                        que entre em contato conosco para assinatura de NDA.
+                    </p>
+                    <a href="mailto:loomper.app@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20Acesso%20-%20Investidor%20Anjo&body=Ol%C3%A1%2C%20tenho%20interesse%20em%20conhecer%20mais%20sobre%20o%20Loomper%20para%20investimento."
+                       class="inline-block bg-loomper hover:bg-loomper-hover text-black font-bold px-8 py-4 rounded-xl transition-all duration-300">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Solicitar por E-mail
+                    </a>
+                </div>
+            `;
+            break;
+            
+        case 'governo':
+            title = 'Governo - Dados e Políticas Públicas';
+            content = `
+                <div class="text-center py-6">
+                    <i class="fas fa-lock text-6xl text-gray-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold mb-4 text-white">Acesso Restrito</h4>
+                    <p class="mb-6 text-gray-400">
+                        Dados estruturados sobre impacto social, formalização e 
+                        indicadores regionais estão disponíveis para órgãos governamentais.
+                    </p>
+                    <a href="mailto:loomper.app@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20Acesso%20-%20Governo&body=Ol%C3%A1%2C%20represento%20[org%C3%A3o/secretaria]%20e%20gostaria%20de%20conhecer%20os%20dados%20do%20Loomper."
+                       class="inline-block bg-loomper hover:bg-loomper-hover text-black font-bold px-8 py-4 rounded-xl transition-all duration-300">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Solicitar por E-mail
+                    </a>
+                </div>
+            `;
+            break;
+            
+        case 'montadoras':
+            title = 'Montadoras - Solução Integrada';
+            content = `
+                <div class="text-center py-6">
+                    <i class="fas fa-lock text-6xl text-gray-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold mb-4 text-white">Acesso Restrito</h4>
+                    <p class="mb-6 text-gray-400">
+                        Informações sobre rastreabilidade, administração de pátios e 
+                        integração com sistemas ERP estão disponíveis mediante solicitação.
+                    </p>
+                    <a href="mailto:loomper.app@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20Acesso%20-%20Montadoras&body=Ol%C3%A1%2C%20represento%20[montadora]%20e%20gostaria%20de%20conhecer%20a%20solu%C3%A7%C3%A3o%20Loomper."
+                       class="inline-block bg-loomper hover:bg-loomper-hover text-black font-bold px-8 py-4 rounded-xl transition-all duration-300">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Solicitar por E-mail
+                    </a>
+                </div>
+            `;
+            break;
+            
+        case 'seguradoras':
+            title = 'Seguradoras - Mitigação de Riscos';
+            content = `
+                <div class="text-center py-6">
+                    <i class="fas fa-lock text-6xl text-gray-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold mb-4 text-white">Acesso Restrito</h4>
+                    <p class="mb-6 text-gray-400">
+                        Dados sobre sinistros, rastreabilidade e análise preditiva 
+                        estão disponíveis para seguradoras parceiras.
+                    </p>
+                    <a href="mailto:loomper.app@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20Acesso%20-%20Seguradoras&body=Ol%C3%A1%2C%20represento%20[seguradora]%20e%20gostaria%20de%20conhecer%20os%20benef%C3%ADcios%20do%20Loomper."
+                       class="inline-block bg-orange hover:bg-orange-hover text-white font-bold px-8 py-4 rounded-xl transition-all duration-300">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Solicitar por E-mail
+                    </a>
+                </div>
+            `;
+            break;
+            
+        case 'transportadoras':
+            title = 'Transportadoras - Otimização Operacional';
+            content = `
+                <div class="text-center py-6">
+                    <i class="fas fa-lock text-6xl text-gray-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold mb-4 text-white">Acesso Restrito</h4>
+                    <p class="mb-6 text-gray-400">
+                        Informações sobre gestão de frota, redução de custos e 
+                        aumento de faturamento estão disponíveis mediante solicitação.
+                    </p>
+                    <a href="mailto:loomper.app@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20Acesso%20-%20Transportadoras&body=Ol%C3%A1%2C%20sou%20de%20[transportadora]%20e%20gostaria%20de%20transformar%20minha%20opera%C3%A7%C3%A3o%20com%20o%20Loomper."
+                       class="inline-block bg-orange hover:bg-orange-hover text-white font-bold px-8 py-4 rounded-xl transition-all duration-300">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Solicitar por E-mail
+                    </a>
+                </div>
+            `;
+            break;
+            
+        case 'termos':
+            title = 'Termos de Uso';
+            content = `
+                <div class="space-y-4 text-sm">
+                    <h4 class="text-lg font-bold text-white">1. Aceitação dos Termos</h4>
+                    <p>Ao acessar e usar a plataforma Loomper, você concorda com estes Termos de Uso e com nossa Política de Privacidade.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">2. Descrição do Serviço</h4>
+                    <p>O Loomper é uma plataforma digital que conecta motoristas cegonheiros, chapas/ajudantes e transportadoras no setor de logística automotiva.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">3. Cadastro e Conta</h4>
+                    <p>Você é responsável por manter a confidencialidade de suas credenciais de acesso e por todas as atividades realizadas em sua conta.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">4. Uso Adequado</h4>
+                    <p>Você concorda em usar a plataforma apenas para fins legais e de acordo com todas as leis aplicáveis.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">5. Propriedade Intelectual</h4>
+                    <p>Todo o conteúdo da plataforma Loomper é protegido por direitos autorais e outras leis de propriedade intelectual.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">6. Limitação de Responsabilidade</h4>
+                    <p>O Loomper atua como intermediário entre as partes e não se responsabiliza por danos diretos ou indiretos decorrentes do uso da plataforma.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">7. Modificações</h4>
+                    <p>Reservamos o direito de modificar estes termos a qualquer momento. As mudanças entram em vigor imediatamente após a publicação.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">8. Contato</h4>
+                    <p>Para dúvidas sobre estes termos, entre em contato: <a href="mailto:loomper.app@gmail.com" class="text-loomper hover:underline">loomper.app@gmail.com</a></p>
+                    
+                    <p class="text-gray-500 text-xs mt-8">Última atualização: Dezembro de 2024</p>
+                </div>
+            `;
+            break;
+            
+        case 'privacidade':
+            title = 'Política de Privacidade';
+            content = `
+                <div class="space-y-4 text-sm">
+                    <h4 class="text-lg font-bold text-white">1. Informações que Coletamos</h4>
+                    <p>Coletamos informações pessoais quando você se cadastra, como nome, e-mail, telefone e localização.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">2. Como Usamos Suas Informações</h4>
+                    <p>Suas informações são usadas para fornecer e melhorar nossos serviços, processar transações e comunicar com você.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">3. Compartilhamento de Dados</h4>
+                    <p>Não vendemos suas informações pessoais. Compartilhamos apenas o necessário para operação da plataforma entre usuários conectados.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">4. Segurança</h4>
+                    <p>Implementamos medidas de segurança para proteger suas informações contra acesso não autorizado.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">5. Seus Direitos (LGPD)</h4>
+                    <p>Você tem direito de acessar, corrigir ou excluir seus dados pessoais a qualquer momento.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">6. Cookies</h4>
+                    <p>Usamos cookies para melhorar sua experiência na plataforma. Você pode configurar seu navegador para recusá-los.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">7. Alterações</h4>
+                    <p>Podemos atualizar esta política periodicamente. Recomendamos revisar regularmente.</p>
+                    
+                    <h4 class="text-lg font-bold text-white mt-6">8. Contato</h4>
+                    <p>Para exercer seus direitos ou dúvidas: <a href="mailto:loomper.app@gmail.com" class="text-loomper hover:underline">loomper.app@gmail.com</a></p>
+                    
+                    <p class="text-gray-500 text-xs mt-8">Última atualização: Dezembro de 2024</p>
+                </div>
+            `;
+            break;
+    }
+    
+    modalTitle.innerHTML = title;
+    modalBody.innerHTML = content;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('modal');
+    if (modal && event.target === modal) {
+        closeModal();
+    }
+});
+
+// Close modal with ESC key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// ============================================
+// SMOOTH SCROLL FOR ANCHOR LINKS
+// ============================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    });
+});
+
+// ============================================
+// FORM VALIDATION ENHANCEMENTS
+// ============================================
+const form = document.querySelector('form[name="loomper_leads"]');
+if (form) {
+    form.addEventListener('submit', function(e) {
+        const whatsappInput = this.querySelector('input[name="whatsapp"]');
+        if (whatsappInput) {
+            // Remove all non-digits
+            let value = whatsappInput.value.replace(/\D/g, '');
+            
+            // Validate minimum length (DDD + 8 digits)
+            if (value.length < 10) {
+                e.preventDefault();
+                alert('Por favor, insira um número de WhatsApp válido (DDD + número)');
+                whatsappInput.focus();
+                return false;
+            }
+        }
+    });
+}
+
+// ============================================
+// WHATSAPP INPUT MASK
+// ============================================
+const whatsappInput = document.querySelector('input[name="whatsapp"]');
+if (whatsappInput) {
+    whatsappInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        
+        if (value.length <= 11) {
+            // Format: (11) 99999-9999
+            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+        }
+        
+        e.target.value = value;
+    });
+}
+
+// ============================================
+// SCROLL REVEAL ANIMATION
+// ============================================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe all sections
+document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+});
+
+// ============================================
+// CONSOLE EASTER EGG
+// ============================================
+console.log('%c🚛 LOOMPER - Revolucionando a Logística Automotiva', 'color: #F1C40F; font-size: 20px; font-weight: bold;');
+console.log('%cInteressado em trabalhar conosco? Envie um e-mail para: loomper.app@gmail.com', 'color: #FF8C00; font-size: 14px;');
+
+// ============================================
+// PAGE LOAD COMPLETE
+// ============================================
+window.addEventListener('load', function() {
+    console.log('✅ Loomper Landing Page carregada com sucesso!');
 });
