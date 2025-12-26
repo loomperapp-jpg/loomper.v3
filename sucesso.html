@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao LOOMPER Beta! 🎉</title>
+    <meta name="description" content="Cadastro realizado com sucesso! Você agora faz parte da revolução no transporte de veículos.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/loomper-optimized.css">
+    
+    <style>
+        /* Success Page Specific Styles */
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 2rem 1rem;
+        }
+        
+        .success-container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8f35 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: scaleIn 0.5s ease-out;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .success-title {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .success-subtitle {
+            font-size: clamp(1rem, 3vw, 1.125rem);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .user-id-box {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .user-id-label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .user-id-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b35;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+        
+        .next-steps {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .next-steps h3 {
+            font-size: 1.125rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #ff6b35;
+            color: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        
+        .step-content {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9375rem;
+            line-height: 1.5;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-success {
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8f35 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(255, 107, 53, 0.5);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .share-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+        }
+        
+        .share-title {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+        
+        .referral-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .referral-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 0.875rem;
+            outline: none;
+        }
+        
+        .btn-copy {
+            flex-shrink: 0;
+            background: #ff6b35;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-copy:hover {
+            background: #ff8f35;
+        }
+        
+        .home-link {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            transition: color 0.2s ease;
+        }
+        
+        .home-link:hover {
+            color: #ff6b35;
+        }
+        
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .success-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-page">
+        <div class="success-container">
+            <!-- Success Icon -->
+            <div class="success-icon">
+                🎉
+            </div>
+            
+            <!-- Title -->
+            <h1 class="success-title">Bem-vindo ao LOOMPER Beta!</h1>
+            <p class="success-subtitle">
+                Seu cadastro foi realizado com sucesso. Você agora faz parte da revolução no transporte de veículos! 🚀
+            </p>
+            
+            <!-- User ID -->
+            <div class="user-id-box">
+                <div class="user-id-label">Seu ID Único</div>
+                <div class="user-id-value" id="displayUserId">LMP-XXXXXXXX</div>
+            </div>
+            
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>📋 Próximos Passos</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Entre no grupo do WhatsApp</strong> e participe das discussões sobre o desenvolvimento do app
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Convide amigos</strong> usando seu link exclusivo e ganhe créditos extras no lançamento
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Acompanhe seu e-mail</strong> — enviaremos atualizações sobre o lançamento do Beta
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="cta-buttons">
+                <a href="https://chat.whatsapp.com/GROUP_ID" class="btn-success btn-primary" target="_blank" rel="noopener">
+                    📱 Entrar no Grupo WhatsApp
+                </a>
+                <a href="/" class="btn-success btn-secondary">
+                    🏠 Voltar para Home
+                </a>
+            </div>
+            
+            <!-- Share Section -->
+            <div class="share-section">
+                <div class="share-title">💰 Convide amigos e ganhe créditos</div>
+                
+                <div class="referral-link">
+                    <input 
+                        type="text" 
+                        class="referral-input" 
+                        id="referralLink" 
+                        readonly 
+                        value="https://loomper.com.br?ref=LMP-XXXXXXXX"
+                    >
+                    <button class="btn-copy" id="copyLinkBtn">Copiar</button>
+                </div>
+                
+                <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.6); margin: 0;">
+                    Para cada amigo que se cadastrar com seu link, vocês dois ganham créditos extras! 🎁
+                </p>
+            </div>
+            
+            <!-- Footer -->
+            <a href="/" class="home-link">← Voltar para a página inicial</a>
+        </div>
+    </div>
+    
+    <script>
+        // Success Page JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get user ID from localStorage
+            const userId = localStorage.getItem('loomper_user_id') || 'LMP-XXXXXXXX';
+            const domain = window.location.origin;
+            
+            // Display user ID
+            const userIdElement = document.getElementById('displayUserId');
+            if (userIdElement) {
+                userIdElement.textContent = userId;
+            }
+            
+            // Generate referral link
+            const referralLink = `${domain}?ref=${userId}`;
+            const referralInput = document.getElementById('referralLink');
+            if (referralInput) {
+                referralInput.value = referralLink;
+            }
+            
+            // Copy link functionality
+            const copyBtn = document.getElementById('copyLinkBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    referralInput.select();
+                    document.execCommand('copy');
+                    
+                    // Visual feedback
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = '✓ Copiado!';
+                    copyBtn.style.background = '#4caf50';
+                    
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                        copyBtn.style.background = '#ff6b35';
+                    }, 2000);
+                });
+            }
+            
+            // Track page view
+            if (typeof window.LOOMPER !== 'undefined' && window.LOOMPER.track) {
+                window.LOOMPER.track('success_page_view', {
+                    user_id: userId,
+                    referral_link: referralLink
+                });
+            }
+            
+            console.log('✅ Página de Sucesso Carregada');
+            console.log('🆔 User ID:', userId);
+            console.log('🔗 Link de Indicação:', referralLink);
+        });
+    </script>
+</body>
+</html>
