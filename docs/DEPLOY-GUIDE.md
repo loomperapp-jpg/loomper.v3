@@ -1,306 +1,380 @@
-# 🚀 GUIA DE DEPLOY - LOOMPER v3.0
+# 🚀 Guia de Deploy - Loomper Landing Page
 
-**IMPORTANTE:** Siga os passos na ordem exata!
-
----
-
-## 📋 PRÉ-REQUISITOS
-
-✅ Acesso ao GitHub (repositório do projeto)  
-✅ Acesso ao Netlify (conta configurada)  
-✅ Backup do projeto atual (por segurança)
+Este guia detalha o processo completo de deploy da Landing Page Loomper no Netlify.
 
 ---
 
-## 🔄 PASSO 1 - BACKUP (SEGURANÇA)
+## 📋 Pré-requisitos
 
-### **No Netlify:**
-1. Acesse: https://app.netlify.com
-2. Selecione seu site
-3. **Deploys** → Encontre o último deploy bem-sucedido
-4. Anote o **Deploy ID** (ex: 694d224d33a...)
-5. Se algo der errado, você pode reverter!
+- [ ] Conta no [GitHub](https://github.com)
+- [ ] Conta no [Netlify](https://netlify.com)
+- [ ] Git instalado localmente
+- [ ] Repositório criado no GitHub
 
 ---
 
-## 📦 PASSO 2 - BAIXAR ARQUIVOS v3.0
+## 🔧 Preparação do Código
 
-Você receberá um ZIP com esta estrutura:
+### 1. Estrutura de Arquivos
+
+Certifique-se de que a estrutura está correta:
 
 ```
-loomper-v3-FINAL/
-├── index.html (SUBSTITUI o atual)
-├── sucesso.html (NOVO - adicionar)
+loomper/
+├── index.html
+├── sucesso.html
 ├── assets/
-│   ├── loomper-optimized.css (SUBSTITUI)
-│   └── loomper-optimized.js (SUBSTITUI)
-└── DOCS/
+│   ├── css/
+│   │   └── loomper-optimized.css
+│   └── js/
+│       └── loomper-optimized.js
+└── documentos/
+    ├── README.md
     ├── CHANGELOG.md
-    ├── DEPLOY-GUIDE.md (este arquivo)
+    ├── DEPLOY-GUIDE.md
     └── TESTE-CHECKLIST.md
 ```
 
----
+### 2. Verificação de Links
 
-## 🔧 PASSO 3 - ATUALIZAR NO GITHUB
+Confira se todos os links estão funcionando:
+- ✅ Links internos (#seções)
+- ✅ Links de imagens (CDN)
+- ✅ Links de CSS/JS
+- ✅ Links externos (WhatsApp, E-mail)
 
-### **Opção A - Via GitHub Web (Mais Fácil):**
-
-1. Acesse seu repositório no GitHub
-2. **Para cada arquivo:**
-
-   **index.html:**
-   - Clique no arquivo
-   - Clique no ícone de lápis (Edit)
-   - Delete todo o conteúdo
-   - Cole o conteúdo do novo `index.html`
-   - Commit: `"feat: v3.0 - corrige mobile e validações"`
-
-   **sucesso.html:**
-   - Clique em **Add file** → **Create new file**
-   - Nome: `sucesso.html`
-   - Cole o conteúdo
-   - Commit: `"feat: adiciona página de sucesso"`
-
-   **assets/loomper-optimized.css:**
-   - Navegue até `assets/`
-   - Clique em `loomper-optimized.css`
-   - Edit → Cole o novo conteúdo
-   - Commit: `"feat: CSS v3.0 consolidado"`
-
-   **assets/loomper-optimized.js:**
-   - Mesma coisa
-   - Commit: `"feat: JS v3.0 com API IBGE"`
-
-### **Opção B - Via Terminal (Git Local):**
+### 3. Teste Local
 
 ```bash
-# 1. Navegue até a pasta do projeto
-cd /caminho/do/seu/projeto
+# Inicie um servidor local
+python3 -m http.server 8000
 
-# 2. Crie branch de segurança (opcional mas recomendado)
-git checkout -b v3.0-deploy
+# Ou use Live Server do VS Code
+# Acesse: http://localhost:8000
+```
 
-# 3. Substitua os arquivos
-# (Cole os arquivos baixados nas pastas corretas)
+Teste todas as funcionalidades antes de fazer deploy.
 
-# 4. Commit
+---
+
+## 📤 Deploy via GitHub + Netlify (Recomendado)
+
+### Passo 1: Preparar Repositório GitHub
+
+```bash
+# Clone ou acesse seu repositório
+cd loomper
+
+# Adicione todos os arquivos
 git add .
-git commit -m "feat: v3.0 - correção crítica mobile + API IBGE + validações"
 
-# 5. Push
-git push origin v3.0-deploy
+# Faça commit
+git commit -m "feat: landing page completa v1.0.0"
 
-# 6. No GitHub, crie Pull Request e merge para main
-```
-
----
-
-## ⏳ PASSO 4 - AGUARDAR DEPLOY NETLIFY
-
-1. **O Netlify detecta automaticamente** o push no GitHub
-2. Acesse: https://app.netlify.com → Seu site
-3. Vá em **Deploys**
-4. Aguarde o build terminar (~1-2 minutos)
-5. Status esperado: **✅ Published**
-
----
-
-## 🧪 PASSO 5 - TESTAR TUDO
-
-### **Checklist de Teste:**
-
-#### **1. Mobile (CRÍTICO):**
-```
-✅ Abra no celular: https://seu-site.netlify.app
-✅ Header: letras legíveis, menu hambúrguer funciona
-✅ Hero: imagem de fundo visível
-✅ Formulário: campos grandes, fáceis de clicar
-✅ Select UF: lista visível (fundo escuro)
-```
-
-#### **2. API IBGE:**
-```
-✅ Selecione UF: "SP"
-✅ Campo Cidade deve listar apenas cidades de SP
-✅ Tente "BA" → deve listar cidades da Bahia
-```
-
-#### **3. Validações:**
-```
-✅ WhatsApp: teste "11999998888" (✅ passa)
-✅ WhatsApp: teste "1199999888" (❌ erro 9 dígitos)
-✅ Email: teste "teste@email.com" (✅ passa)
-✅ Email: teste "teste@email.co" (❌ erro)
-```
-
-#### **4. Envio do Formulário:**
-```
-✅ Preencha todos os campos
-✅ Aceite os termos
-✅ Clique "Entrar para o Beta"
-✅ Deve redirecionar para: /sucesso.html
-```
-
-#### **5. Netlify Forms:**
-```
-✅ Acesse: https://app.netlify.com
-✅ Vá em: Forms → waitlist
-✅ Verifique se o envio apareceu
-✅ Confira se todos os campos estão preenchidos:
-   - name, whatsapp, email, uf, city
-   - user_type, invite_phone, terms
-   - user_id, referrer_id, user_journey
-   - terms_accepted_at, credits_initial
-```
-
----
-
-## 🔍 PASSO 6 - MONITORAR
-
-### **Primeiros 30min após deploy:**
-
-1. **Console do navegador (F12):**
-   ```
-   Esperado:
-   🚀 LOOMPER Optimized JS v2.0 Ativo
-   🆔 User ID: LMP-XXXXXXXX
-   ✅ Todas as funcionalidades carregadas
-   
-   SEM erros 404
-   SEM erros de JavaScript
-   ```
-
-2. **Teste com usuário real:**
-   - Peça para alguém testar no celular
-   - Verifique se conseguiu preencher e enviar
-   - Confirme que recebeu no Netlify Forms
-
-3. **Analytics (se configurado):**
-   - Taxa de abandono do formulário
-   - Tempo médio na página
-   - Dispositivos mais usados
-
----
-
-## ⚠️ TROUBLESHOOTING
-
-### **Problema: Deploy falhou no Netlify**
-```
-Causa: Erro de sintaxe em algum arquivo
-Solução:
-1. Veja o log de erro no Netlify
-2. Corrija o arquivo indicado
-3. Faça novo commit e push
-```
-
-### **Problema: API IBGE não funciona**
-```
-Causa: Bloqueio CORS ou URL incorreta
-Solução:
-1. Abra F12 → Console
-2. Veja o erro exato
-3. Se for CORS, API está OK (navegador bloqueia, mas funciona)
-4. Teste em modo anônimo
-```
-
-### **Problema: Formulário não envia**
-```
-Causa: Netlify Forms não detectou o form no build
-Solução:
-1. Confirme que há form oculto antes do </body>:
-   <form name="waitlist" netlify hidden>...</form>
-2. Faça novo deploy (Clear cache and deploy)
-3. Aguarde 5 minutos
-```
-
-### **Problema: Página de sucesso 404**
-```
-Causa: sucesso.html não foi adicionado
-Solução:
-1. Confirme que sucesso.html está na raiz do repo
-2. Faça commit e push novamente
-3. Aguarde novo deploy
-```
-
-### **Problema: Mobile ainda está ruim**
-```
-Causa: Cache do navegador
-Solução:
-1. No celular: Abrir modo anônimo
-2. Ou: Limpar cache do site
-3. Ou: Adicionar ?v=3.0 na URL
-   Ex: https://seu-site.netlify.app/?v=3.0
-```
-
----
-
-## 🔙 REVERTER (SE NECESSÁRIO)
-
-**Se algo der muito errado:**
-
-### **No Netlify:**
-1. Acesse **Deploys**
-2. Encontre o deploy anterior (antes da v3.0)
-3. Clique nos 3 pontinhos → **Publish deploy**
-4. Confirme
-5. Site volta para versão antiga em ~30 segundos
-
-### **No GitHub:**
-```bash
-# Reverter último commit
-git revert HEAD
+# Push para o GitHub
 git push origin main
-
-# Ou restaurar para commit específico
-git reset --hard COMMIT_ID_ANTERIOR
-git push origin main --force
 ```
 
----
+### Passo 2: Conectar ao Netlify
 
-## ✅ CHECKLIST FINAL
+1. Acesse [app.netlify.com](https://app.netlify.com)
+2. Clique em **"Add new site"** > **"Import an existing project"**
+3. Escolha **"Deploy with GitHub"**
+4. Autorize o Netlify a acessar seu GitHub
+5. Selecione o repositório `loomper`
 
-Antes de considerar concluído:
+### Passo 3: Configurar Build Settings
 
-- [ ] Deploy bem-sucedido no Netlify
-- [ ] Testado em mobile (iPhone e Android)
-- [ ] API IBGE funcionando
-- [ ] Validações corretas
-- [ ] Formulário enviando para Netlify Forms
-- [ ] Página de sucesso acessível
-- [ ] Sem erros no console (F12)
-- [ ] Lead de teste recebido
+**Build Settings:**
+```
+Base directory: (deixe vazio ou /)
+Build command: (deixe vazio)
+Publish directory: /
+```
 
----
+Clique em **"Deploy site"**
 
-## 📞 SUPORTE
+### Passo 4: Aguardar Deploy
 
-**Se tiver dúvidas:**
-- Anote o erro exato que aparece
-- Tire print do console (F12)
-- Copie o log de deploy do Netlify
-- Me envie para análise
-
----
-
-## 🎯 PRÓXIMOS PASSOS
-
-Após deploy bem-sucedido:
-
-1. **Monitorar conversão** (primeiros 48h)
-2. **Coletar feedback** dos primeiros usuários
-3. **Ajustar** se necessário
-4. **Planejar FASE 2** (simuladores funcionais)
+- ⏳ O Netlify irá processar e fazer o deploy
+- 🎉 Em ~2 minutos seu site estará no ar!
+- 🔗 URL temporária: `random-name-12345.netlify.app`
 
 ---
 
-**Boa sorte com o deploy!** 🚀
+## 🎨 Personalizar Domínio
 
-Se seguir este guia passo a passo, tudo vai funcionar perfeitamente! 💪
+### Opção 1: Subdomínio Netlify
+
+1. Vá em **Site settings** > **Site details**
+2. Clique em **"Change site name"**
+3. Digite: `loomper`
+4. Novo URL: `loomper.netlify.app`
+
+### Opção 2: Domínio Customizado
+
+1. Compre o domínio `loomper.app` (Registro.br, GoDaddy, etc.)
+2. Em **Site settings** > **Domain management**
+3. Clique em **"Add custom domain"**
+4. Digite: `loomper.app`
+5. Siga as instruções para configurar DNS:
+
+**Registros DNS necessários:**
+```
+Type: A
+Name: @
+Value: 75.2.60.5
+
+Type: CNAME
+Name: www
+Value: loomper.netlify.app
+```
+
+6. Aguarde propagação (até 48h, geralmente 2-6h)
+7. Netlify irá provisionar SSL automático (HTTPS)
 
 ---
 
-**Versão:** 3.0  
-**Data:** 25/12/2025  
-**Status:** ✅ Pronto para produção
+## 📝 Configurar Netlify Forms
+
+### Passo 1: Ativar Formulários
+
+1. Vá em **Site settings** > **Forms**
+2. O formulário `loomper_leads` deve aparecer automaticamente
+3. Se não aparecer, faça um novo deploy
+
+### Passo 2: Configurar Notificações
+
+1. Em **Forms** > **Form notifications**
+2. Clique em **"Add notification"**
+3. Escolha **"Email notification"**
+4. Configure:
+   ```
+   Event to notify: New form submission
+   Email to notify: loomper.app@gmail.com
+   ```
+
+### Passo 3: Configurar Redirecionamento
+
+Adicione no HTML (já incluído):
+```html
+<form name="loomper_leads" method="POST" data-netlify="true" action="/sucesso.html">
+```
+
+Ou crie arquivo `netlify.toml` na raiz:
+```toml
+[[redirects]]
+  from = "/cadastro-sucesso"
+  to = "/sucesso.html"
+  status = 200
+```
+
+### Passo 4: Testar Formulário
+
+1. Acesse o site publicado
+2. Preencha o formulário de cadastro
+3. Envie e verifique:
+   - ✅ Redirecionamento para `/sucesso.html`
+   - ✅ E-mail de notificação recebido
+   - ✅ Submission apareceu no painel Netlify
+
+---
+
+## ⚙️ Configurações Adicionais
+
+### Headers de Segurança
+
+Crie `netlify.toml` na raiz:
+
+```toml
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+```
+
+### Redirects e Rewrites
+
+```toml
+# 404 personalizado (crie 404.html)
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Redirect www para não-www
+[[redirects]]
+  from = "https://www.loomper.app/*"
+  to = "https://loomper.app/:splat"
+  status = 301
+  force = true
+```
+
+### Variables de Ambiente
+
+Se precisar de variáveis:
+1. Vá em **Site settings** > **Environment variables**
+2. Adicione as variáveis necessárias
+3. Exemplo: `FORM_EMAIL=loomper.app@gmail.com`
+
+---
+
+## 📊 Analytics e Monitoramento
+
+### Google Analytics
+
+Adicione no `<head>` do `index.html`:
+
+```html
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+```
+
+### Netlify Analytics
+
+1. Vá em **Analytics** no painel
+2. Ative o Netlify Analytics (pago: $9/mês)
+3. Visualize métricas de tráfego, performance e formulários
+
+---
+
+## 🔄 Deploy Contínuo
+
+### Automatic Deploys
+
+**Já configurado automaticamente!**
+- Push para `main` → Deploy automático
+- Pull Request → Deploy preview
+
+### Manual Deploy
+
+Para forçar novo deploy:
+```bash
+git commit --allow-empty -m "chore: trigger deploy"
+git push origin main
+```
+
+Ou no painel Netlify:
+1. **Deploys** > **Trigger deploy**
+2. Escolha **"Clear cache and deploy site"**
+
+---
+
+## 🧪 Testes Pós-Deploy
+
+### Checklist Essencial
+
+- [ ] Site carrega sem erros
+- [ ] Todas as imagens aparecem
+- [ ] CSS e JS carregam corretamente
+- [ ] Formulário funciona e redireciona
+- [ ] Links externos abrem corretamente
+- [ ] WhatsApp floating button funciona
+- [ ] Modal abre e fecha
+- [ ] Tabs do simulador funcionam
+- [ ] Copiar PIX funciona
+- [ ] Menu mobile funciona
+- [ ] Site responsivo em mobile
+- [ ] HTTPS ativo (cadeado verde)
+- [ ] Favicon aparece
+
+### Ferramentas de Teste
+
+**Performance:**
+- [PageSpeed Insights](https://pagespeed.web.dev/)
+- [GTmetrix](https://gtmetrix.com/)
+- [WebPageTest](https://www.webpagetest.org/)
+
+**SEO:**
+- [Google Search Console](https://search.google.com/search-console)
+- [Bing Webmaster Tools](https://www.bing.com/webmasters)
+
+**Responsividade:**
+- Chrome DevTools (F12 > Toggle Device Toolbar)
+- [Responsive Design Checker](https://responsivedesignchecker.com/)
+
+**Acessibilidade:**
+- [WAVE](https://wave.webaim.org/)
+- [axe DevTools](https://www.deque.com/axe/devtools/)
+
+---
+
+## 🐛 Troubleshooting
+
+### Problema: Formulário não funciona
+
+**Solução:**
+- Verifique `data-netlify="true"` no form
+- Confirme `name="loomper_leads"`
+- Garanta que há input `<input type="hidden" name="form-name" value="loomper_leads">`
+- Faça novo deploy
+
+### Problema: CSS/JS não carregam
+
+**Solução:**
+- Verifique caminhos relativos (`assets/css/...`)
+- Limpe cache do navegador (Ctrl+Shift+R)
+- Clear cache and deploy no Netlify
+
+### Problema: Imagens não aparecem
+
+**Solução:**
+- Confirme URLs das imagens CDN
+- Verifique se imagens são públicas
+- Use DevTools para ver erros 404
+
+### Problema: HTTPS não ativa
+
+**Solução:**
+- Aguarde até 24h para provisionamento
+- Force renovação em **Domain settings** > **HTTPS**
+- Verifique configuração DNS
+
+---
+
+## 📞 Suporte
+
+**Problemas com deploy?**
+- 📧 E-mail: loomper.app@gmail.com
+- 💬 WhatsApp: +55 11 96585-8142
+- 📚 Docs Netlify: https://docs.netlify.com
+
+---
+
+## ✅ Checklist Final
+
+Antes de considerar deploy concluído:
+
+- [ ] Site acessível via HTTPS
+- [ ] Domínio customizado configurado
+- [ ] Formulário testado e funcionando
+- [ ] Notificações de e-mail ativas
+- [ ] Analytics instalado
+- [ ] Performance Score > 90
+- [ ] SEO verificado
+- [ ] Mobile testado
+- [ ] Links sociais funcionam
+- [ ] README.md atualizado no repo
+
+---
+
+<div align="center">
+
+**🎉 Deploy Concluído com Sucesso!**
+
+Seu site Loomper está no ar revolucionando a logística! 🚛
+
+</div>
+
+---
+
+*Última atualização: 26 de dezembro de 2024*
