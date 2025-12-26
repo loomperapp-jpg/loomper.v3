@@ -3,403 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo ao LOOMPER Beta! 🎉</title>
-    <meta name="description" content="Cadastro realizado com sucesso! Você agora faz parte da revolução no transporte de veículos.">
+    <title>Cadastro Realizado com Sucesso! | Loomper</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/assets/loomper-optimized.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'loomper-gold': '#F1C40F',
+                        'loomper-orange': '#FF8C00',
+                        'loomper-dark': '#020617',
+                        'loomper-card': '#0F172A',
+                    }
+                }
+            }
+        }
+    </script>
     
     <style>
-        /* Success Page Specific Styles */
-        .success-page {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            padding: 2rem 1rem;
+        .gradient-gold {
+            background: linear-gradient(135deg, #F1C40F 0%, #FF8C00 100%);
         }
         
-        .success-container {
-            max-width: 600px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        .animate-check {
+            animation: checkmark 0.8s ease;
         }
         
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, #ff6b35 0%, #ff8f35 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            animation: scaleIn 0.5s ease-out;
+        @keyframes checkmark {
+            0% { transform: scale(0) rotate(45deg); }
+            50% { transform: scale(1.2) rotate(45deg); }
+            100% { transform: scale(1) rotate(45deg); }
         }
         
-        @keyframes scaleIn {
-            from {
-                transform: scale(0);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+        .confetti {
+            animation: confetti-fall 3s ease-out;
         }
         
-        .success-title {
-            font-size: clamp(1.75rem, 5vw, 2.5rem);
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        .success-subtitle {
-            font-size: clamp(1rem, 3vw, 1.125rem);
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        
-        .user-id-box {
-            background: rgba(255, 107, 53, 0.1);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .user-id-label {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .user-id-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ff6b35;
-            font-family: 'Courier New', monospace;
-            letter-spacing: 2px;
-        }
-        
-        .next-steps {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-        
-        .next-steps h3 {
-            font-size: 1.125rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .step {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .step:last-child {
-            margin-bottom: 0;
-        }
-        
-        .step-number {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            background: #ff6b35;
-            color: #1a1a1a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.875rem;
-        }
-        
-        .step-content {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9375rem;
-            line-height: 1.5;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .btn-success {
-            width: 100%;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #ff6b35 0%, #ff8f35 100%);
-            color: #ffffff;
-            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(255, 107, 53, 0.5);
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .share-section {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-        }
-        
-        .share-title {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 1rem;
-        }
-        
-        .referral-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .referral-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-size: 0.875rem;
-            outline: none;
-        }
-        
-        .btn-copy {
-            flex-shrink: 0;
-            background: #ff6b35;
-            color: #ffffff;
-            border: none;
-            border-radius: 6px;
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .btn-copy:hover {
-            background: #ff8f35;
-        }
-        
-        .home-link {
-            display: inline-block;
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 0.875rem;
-            margin-top: 1rem;
-            transition: color 0.2s ease;
-        }
-        
-        .home-link:hover {
-            color: #ff6b35;
-        }
-        
-        @media (max-width: 768px) {
-            .success-container {
-                padding: 2rem 1.5rem;
-            }
-            
-            .success-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 2rem;
-            }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
     </style>
 </head>
-<body>
-    <div class="success-page">
-        <div class="success-container">
-            <!-- Success Icon -->
-            <div class="success-icon">
-                🎉
+<body class="bg-loomper-dark text-white font-sans min-h-screen flex items-center justify-center p-4">
+    
+    <!-- Confetti -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="confetti absolute" style="left: 10%; animation-delay: 0s; color: #F1C40F;">🎉</div>
+        <div class="confetti absolute" style="left: 20%; animation-delay: 0.3s; color: #FF8C00;">✨</div>
+        <div class="confetti absolute" style="left: 30%; animation-delay: 0.6s; color: #F1C40F;">🚀</div>
+        <div class="confetti absolute" style="left: 40%; animation-delay: 0.9s; color: #FF8C00;">⭐</div>
+        <div class="confetti absolute" style="left: 50%; animation-delay: 1.2s; color: #F1C40F;">🎊</div>
+        <div class="confetti absolute" style="left: 60%; animation-delay: 1.5s; color: #FF8C00;">💫</div>
+        <div class="confetti absolute" style="left: 70%; animation-delay: 1.8s; color: #F1C40F;">🌟</div>
+        <div class="confetti absolute" style="left: 80%; animation-delay: 2.1s; color: #FF8C00;">✨</div>
+        <div class="confetti absolute" style="left: 90%; animation-delay: 2.4s; color: #F1C40F;">🎉</div>
+    </div>
+
+    <div class="max-w-2xl w-full z-10">
+        <!-- Success Card -->
+        <div class="bg-loomper-card rounded-3xl p-8 md:p-12 text-center shadow-2xl border border-loomper-gold/20">
+            
+            <!-- Checkmark -->
+            <div class="mb-8">
+                <div class="w-24 h-24 mx-auto gradient-gold rounded-full flex items-center justify-center animate-check">
+                    <i class="fas fa-check text-5xl text-loomper-dark"></i>
+                </div>
             </div>
             
             <!-- Title -->
-            <h1 class="success-title">Bem-vindo ao LOOMPER Beta!</h1>
-            <p class="success-subtitle">
-                Seu cadastro foi realizado com sucesso. Você agora faz parte da revolução no transporte de veículos! 🚀
+            <h1 class="text-4xl md:text-5xl font-black mb-4">
+                <span class="bg-gradient-to-r from-loomper-gold to-loomper-orange bg-clip-text text-transparent">
+                    Bem-vindo ao Grupo de Pioneiros!
+                </span>
+            </h1>
+            
+            <p class="text-xl text-gray-300 mb-8">
+                Sua inscrição foi recebida com sucesso. 🎉
             </p>
             
-            <!-- User ID -->
-            <div class="user-id-box">
-                <div class="user-id-label">Seu ID Único</div>
-                <div class="user-id-value" id="displayUserId">LMP-XXXXXXXX</div>
-            </div>
-            
-            <!-- Next Steps -->
-            <div class="next-steps">
-                <h3>📋 Próximos Passos</h3>
-                
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <strong>Entre no grupo do WhatsApp</strong> e participe das discussões sobre o desenvolvimento do app
+            <!-- Info Boxes -->
+            <div class="space-y-4 mb-8">
+                <div class="bg-loomper-dark p-6 rounded-xl text-left border border-loomper-gold/10">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-loomper-orange/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fab fa-whatsapp text-2xl text-loomper-gold"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Próximos Passos</h3>
+                            <p class="text-gray-300">Em breve você receberá mais informações por <strong class="text-loomper-gold">WhatsApp</strong> e <strong class="text-loomper-gold">e-mail</strong>.</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <strong>Convide amigos</strong> usando seu link exclusivo e ganhe créditos extras no lançamento
+                <div class="bg-loomper-dark p-6 rounded-xl text-left border border-loomper-gold/10">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-loomper-orange/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-gift text-2xl text-loomper-gold"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Benefícios Exclusivos</h3>
+                            <ul class="text-gray-300 space-y-1">
+                                <li>✅ Selo Beta Tester</li>
+                                <li>✅ Prioridade por 6 meses</li>
+                                <li>✅ Suporte direto</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <strong>Acompanhe seu e-mail</strong> — enviaremos atualizações sobre o lançamento do Beta
-                    </div>
-                </div>
-            </div>
-            
-            <!-- CTA Buttons -->
-            <div class="cta-buttons">
-                <a href="https://chat.whatsapp.com/GROUP_ID" class="btn-success btn-primary" target="_blank" rel="noopener">
-                    📱 Entrar no Grupo WhatsApp
-                </a>
-                <a href="/" class="btn-success btn-secondary">
-                    🏠 Voltar para Home
-                </a>
             </div>
             
             <!-- Share Section -->
-            <div class="share-section">
-                <div class="share-title">💰 Convide amigos e ganhe créditos</div>
+            <div class="bg-gradient-to-r from-loomper-orange to-loomper-gold p-8 rounded-2xl mb-8">
+                <h3 class="text-2xl font-bold text-loomper-dark mb-4">
+                    Convide Amigos e Ganhe Vantagens!
+                </h3>
+                <p class="text-loomper-dark mb-6">
+                    Compartilhe o Loomper com amigos motoristas e chapas. Quanto mais pessoas, melhor para todos!
+                </p>
                 
-                <div class="referral-link">
-                    <input 
-                        type="text" 
-                        class="referral-input" 
-                        id="referralLink" 
-                        readonly 
-                        value="https://loomper.com.br?ref=LMP-XXXXXXXX"
-                    >
-                    <button class="btn-copy" id="copyLinkBtn">Copiar</button>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://wa.me/?text=Acabei de me inscrever no Loomper, o app que vai revolucionar o transporte de veículos! É gratuito para motoristas e chapas. Cadastre-se: https://loomper.app" 
+                       target="_blank"
+                       class="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-lg transition inline-flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        Compartilhar no WhatsApp
+                    </a>
                 </div>
                 
-                <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.6); margin: 0;">
-                    Para cada amigo que se cadastrar com seu link, vocês dois ganham créditos extras! 🎁
+                <p class="text-sm text-loomper-dark/80 mt-4">
+                    Seus amigos agradecerão! 🚀
                 </p>
             </div>
             
-            <!-- Footer -->
-            <a href="/" class="home-link">← Voltar para a página inicial</a>
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/" class="bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-8 py-4 rounded-lg transition">
+                    Voltar para Home
+                </a>
+                <a href="https://wa.me/5511965858142" target="_blank" class="border-2 border-loomper-gold text-loomper-gold hover:bg-loomper-gold hover:text-loomper-dark font-bold px-8 py-4 rounded-lg transition">
+                    Falar com Suporte
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer Note -->
+        <div class="text-center mt-8 text-gray-400">
+            <p>Dúvidas? Entre em contato: <a href="/cdn-cgi/l/contato@loomper.com.br" class="text-loomper-gold hover:underline"><span class="__cf_email__" data-cfemail="d5b9babab8a5b0a7fbb4a5a595b2b8b4bcb9fbb6bab8">[email&#160;protected]</span></a></p>
         </div>
     </div>
     
-    <script>
-        // Success Page JavaScript
-        document.addEventListener('DOMContentLoaded', () => {
-            // Get user ID from localStorage
-            const userId = localStorage.getItem('loomper_user_id') || 'LMP-XXXXXXXX';
-            const domain = window.location.origin;
-            
-            // Display user ID
-            const userIdElement = document.getElementById('displayUserId');
-            if (userIdElement) {
-                userIdElement.textContent = userId;
-            }
-            
-            // Generate referral link
-            const referralLink = `${domain}?ref=${userId}`;
-            const referralInput = document.getElementById('referralLink');
-            if (referralInput) {
-                referralInput.value = referralLink;
-            }
-            
-            // Copy link functionality
-            const copyBtn = document.getElementById('copyLinkBtn');
-            if (copyBtn) {
-                copyBtn.addEventListener('click', () => {
-                    referralInput.select();
-                    document.execCommand('copy');
-                    
-                    // Visual feedback
-                    const originalText = copyBtn.textContent;
-                    copyBtn.textContent = '✓ Copiado!';
-                    copyBtn.style.background = '#4caf50';
-                    
-                    setTimeout(() => {
-                        copyBtn.textContent = originalText;
-                        copyBtn.style.background = '#ff6b35';
-                    }, 2000);
-                });
-            }
-            
-            // Track page view
-            if (typeof window.LOOMPER !== 'undefined' && window.LOOMPER.track) {
-                window.LOOMPER.track('success_page_view', {
-                    user_id: userId,
-                    referral_link: referralLink
-                });
-            }
-            
-            console.log('✅ Página de Sucesso Carregada');
-            console.log('🆔 User ID:', userId);
-            console.log('🔗 Link de Indicação:', referralLink);
-        });
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Auto redirect after 30 seconds (optional)
+        // setTimeout(() => {
+        //     window.location.href = '/';
+        // }, 30000);
     </script>
 </body>
 </html>
