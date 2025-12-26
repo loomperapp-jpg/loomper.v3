@@ -1,223 +1,220 @@
-# 🚀 LOOMPER V3.0 — PACOTE COMPLETO
+# 🚛 Loomper - Landing Page
 
-**Versão:** 3.0 — Netlify Forms Compatible  
-**Data:** 26/12/2024  
-**Status:** ✅ 100% CONCLUÍDO E TESTADO
+![Loomper Logo](https://www.genspark.ai/api/files/s/I1BYkRy4)
+
+**O Ecossistema que Revoluciona o Transporte de Veículos no Brasil**
+
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![Netlify](https://img.shields.io/badge/deploy-netlify-00C7B7.svg)]()
+[![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
 
 ---
 
-## 📦 CONTEÚDO DO PACOTE
+## 📋 Sobre o Projeto
 
-### ✅ Arquivos Principais
+Loomper é a primeira plataforma digital que conecta **Motoristas Cegonheiros**, **Chapas/Ajudantes** e **Transportadoras** em um único ecossistema integrado, transformando a logística automotiva no Brasil.
+
+### ✨ Características Principais
+
+- 🎯 **Landing Page Responsiva** - Design otimizado para mobile e desktop
+- 🚀 **Cadastro de Pioneiros** - Sistema de lead generation integrado com Netlify Forms
+- 📱 **Simulador Interativo** - Demonstração visual dos fluxos de cada perfil de usuário
+- 💳 **Sistema PIX** - Doações facilitadas com cópia automática da chave
+- 🎨 **Design Moderno** - Interface dark com gradientes laranja e amarelo dourado
+- ⚡ **Performance Otimizada** - Carregamento rápido com CSS e JS otimizados
+- 🔍 **SEO-Friendly** - Meta tags completas e conteúdo otimizado para busca
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **HTML5** - Estrutura semântica e acessível
+- **Tailwind CSS 3.x** - Framework CSS utilitário via CDN
+- **Vanilla JavaScript** - Interatividade sem dependências
+- **Font Awesome 6.5** - Ícones profissionais
+- **Netlify** - Hospedagem e formulários integrados
+
+---
+
+## 📁 Estrutura do Projeto
+
 ```
-loomper-v3-FINAL/
-├── 📄 index.html                      → Página principal (31KB)
-├── 📄 sucesso.html                    → Página de confirmação (13KB)
-├── 📂 assets/
-│   ├── 🎨 loomper-optimized.css      → Estilos consolidados (v3.0)
-│   ├── ⚙️  loomper-optimized.js       → JavaScript com API IBGE (v3.0)
-│   └── 📂 images/                     → Todas as imagens do projeto
-├── 📂 DOCS/
-│   ├── 📋 CHANGELOG.md               → Todas as 20+ correções detalhadas
-│   ├── 🚀 DEPLOY-GUIDE.md            → Guia passo a passo para deploy
-│   └── ✅ TESTE-CHECKLIST.md         → Checklist completo de validação
-└── 📖 README.md                       → Este arquivo
+loomper-final/
+│
+├── index.html                   # Página principal
+├── sucesso.html                 # Página de confirmação de cadastro
+│
+├── assets/
+│   ├── css/
+│   │   └── loomper-optimized.css   # Estilos customizados
+│   │
+│   ├── js/
+│   │   └── loomper-optimized.js    # Scripts de interatividade
+│   │
+│   └── images/                  # Imagens e ícones (via CDN)
+│
+└── documentos/
+    ├── README.md                # Este arquivo
+    ├── CHANGELOG.md             # Histórico de versões
+    ├── DEPLOY-GUIDE.md          # Guia de deploy
+    └── TESTE-CHECKLIST.md       # Checklist de testes
 ```
 
 ---
 
-## 🎯 O QUE FOI CORRIGIDO
+## 🚀 Como Usar
 
-### 🔴 CRÍTICO (Bloqueadores de Conversão)
-1. ✅ **CSS consolidado** — 2 arquivos duplicados → 1 versão única
-2. ✅ **API IBGE integrada** — UF seleciona apenas cidades corretas
-3. ✅ **Validação WhatsApp** — Aceita apenas 10-11 dígitos
-4. ✅ **Validação E-mail** — Regex correto (rejeita `.co`)
-5. ✅ **Campos pré-preenchidos** — Disparam validação automaticamente
-6. ✅ **Checkbox termos** — Registra timestamp rastreável (ISO)
-7. ✅ **Contraste mobile** — Select/option legíveis em touch
-8. ✅ **Página de sucesso** — `/sucesso.html` funcional e bonita
+### Desenvolvimento Local
 
-### 🟡 UX/UI (Melhorias de Conversão)
-9. ✅ **Hero background** — hero-truck.png como marca d'água
-10. ✅ **Logo no header** — Fundo branco + logo visível
-11. ✅ **Tipografia otimizada** — Base 16px, line-height 1.6
-12. ✅ **Mobile-first** — Header, menu, formulário otimizados
-13. ✅ **Feedback visual** — Erros em vermelho, estados claros
-14. ✅ **Botões com hierarquia** — CTAs destacados
-15. ✅ **Textos reduzidos** — 40% menos texto, mais imagens
-
-### 🟢 TÉCNICO (Estabilidade)
-16. ✅ **Z-index conflitos** — Removidos
-17. ✅ **LocalStorage** — Dados pré-salvos funcionando
-18. ✅ **Tracking** — Eventos completos (page_view, form_submit, etc.)
-19. ✅ **Cross-browser** — Chrome, Firefox, Safari, Edge testados
-20. ✅ **Responsividade** — 320px a 1920px funcionando
-
----
-
-## 🚀 COMO SUBIR NO NETLIFY
-
-### Opção 1 — GitHub Web Interface (Recomendado)
-1. **Acesse seu repositório** no GitHub
-2. **Substitua os arquivos**:
-   - `index.html` → Raiz do projeto
-   - `sucesso.html` → Raiz do projeto (NOVO)
-   - `assets/loomper-optimized.css` → Pasta assets
-   - `assets/loomper-optimized.js` → Pasta assets
-3. **Commit messages sugeridas**:
-   ```
-   fix: corrige validações e integra API IBGE (v3.0)
-   feat: adiciona página de sucesso após cadastro
-   style: consolida CSS e otimiza responsividade
-   ```
-4. **Aguarde 1-2 minutos** — Netlify faz deploy automático
-
-### Opção 2 — Terminal (Git Local)
+1. **Clone o repositório**
 ```bash
-git pull origin main
-# Substitua os 4 arquivos acima
-git add index.html sucesso.html assets/
-git commit -m "fix: loomper v3.0 - correções críticas + API IBGE"
-git push origin main
+git clone https://github.com/seu-usuario/loomper.git
+cd loomper
 ```
 
-### ⚙️ Configuração Netlify
-Certifique-se de que `netlify.toml` contém:
-```toml
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+2. **Abra o projeto**
+```bash
+# Com Python (recomendado)
+python3 -m http.server 8000
 
-[[redirects]]
-  from = "/sucesso.html"
-  to = "/sucesso.html"
-  status = 200
+# Ou simplesmente abra index.html no navegador
+open index.html
 ```
+
+3. **Acesse no navegador**
+```
+http://localhost:8000
+```
+
+### Deploy no Netlify
+
+#### Opção 1: Deploy via GitHub (Recomendado)
+
+1. Faça push do código para GitHub
+2. Conecte o repositório ao Netlify
+3. Configure build settings:
+   - **Build command:** (deixe vazio)
+   - **Publish directory:** `/`
+4. Deploy automático configurado! ✅
+
+#### Opção 2: Deploy Manual
+
+1. Arraste a pasta do projeto para [app.netlify.com/drop](https://app.netlify.com/drop)
+2. Aguarde o upload e processamento
+3. Site publicado! 🎉
 
 ---
 
-## ✅ TESTES OBRIGATÓRIOS APÓS DEPLOY
+## ⚙️ Configuração
 
-### 1️⃣ Console do Navegador (F12)
-Deve aparecer:
-```
-🚀 LOOMPER Optimized JS v3.0 Ativo
-🆔 User ID: LMP-XXXXXXXX
-✅ Todas as funcionalidades carregadas
-```
-**Sem erros 404!**
+### Netlify Forms
 
-### 2️⃣ Validações do Formulário
-- ✅ WhatsApp: `11999998888` → Aceito
-- ❌ WhatsApp: `119999888` → Rejeitado (9 dígitos)
-- ✅ E-mail: `teste@gmail.com` → Aceito
-- ❌ E-mail: `teste@co` → Rejeitado
+O formulário já está configurado para Netlify Forms. Após o deploy:
 
-### 3️⃣ API IBGE
-- Selecione **UF: SP** → Cidades de SP aparecem
-- Selecione **UF: BA** → Cidades de BA aparecem (Porto Alegre NÃO deve aparecer)
+1. Acesse **Site settings > Forms**
+2. Ative as notificações de e-mail
+3. Configure o redirecionamento para `/sucesso.html`
 
-### 4️⃣ Envio do Formulário
-1. Preencha todos os campos corretamente
-2. Marque a checkbox dos termos
-3. Clique em "Entrar para o Beta"
-4. **Deve redirecionar** para `/sucesso.html`
-5. **Verifique Netlify Dashboard**: https://app.netlify.com → Forms → "waitlist"
+### Customizações
 
-### 5️⃣ Página de Sucesso
-- **User ID** aparece correto (LMP-XXXXXXXX)
-- **Link de indicação** exibe seu domínio + `?ref=USER_ID`
-- **Botão "Copiar"** copia link para clipboard
-- **Botão WhatsApp** abre grupo
-
----
-
-## 📊 DADOS CAPTURADOS NO NETLIFY
-
-Cada lead receberá estes campos:
-```json
-{
-  "user_type": "Motorista",
-  "name": "João Silva",
-  "whatsapp": "11999998888",
-  "email": "joao@example.com",
-  "uf": "SP",
-  "city": "São Paulo",
-  "invite_phone": "11888887777",
-  "terms": "on",
-  "user_id": "LMP-A1B2C3D4",
-  "referrer_id": "LMP-X9Y8Z7W6",
-  "terms_accepted_at": "2024-12-26T00:30:00.000Z",
-  "credits_initial": "100",
-  "user_journey": "{...eventos...}"
+**Cores principais** (em `tailwind.config`):
+```javascript
+colors: {
+    loomper: '#F1C40F',      // Amarelo dourado
+    orange: '#FF8C00',        // Laranja principal
+    'dark-bg': '#020617',     // Fundo escuro
+    'dark-card': '#0F172A'    // Cards
 }
 ```
 
----
-
-## 🛠️ ARQUIVOS DE SUPORTE
-
-### 📋 CHANGELOG.md
-Documentação completa de todas as 20+ correções aplicadas, com antes/depois de cada mudança.
-
-### 🚀 DEPLOY-GUIDE.md
-Guia passo a passo detalhado para subir no Netlify, com troubleshooting e verificações.
-
-### ✅ TESTE-CHECKLIST.md
-Checklist completo com 50+ itens de teste para validar tudo antes de considerar o deploy concluído.
+**Contatos**:
+- E-mail: `loomper.app@gmail.com`
+- WhatsApp: `+55 11 96585-8142`
+- PIX: `loomper.app@gmail.com`
 
 ---
 
-## 🎯 PRÓXIMOS PASSOS (FASE 2)
+## 📊 Funcionalidades
 
-Após validar que esta versão está convertendo leads:
-1. **Simuladores funcionais** por ator (Motorista, Chapa, Transportadora)
-2. **Dashboards com gráficos** (Chart.js)
-3. **Substituir emojis** por ícones SVG profissionais
-4. **Seção Beta** → Infográfico visual de 3 segundos
-5. **Seção Apoio Social** → Imagens emocionais
+### ✅ Implementadas
 
----
+- [x] Hero Section com CTA destacado
+- [x] Cards dos 3 perfis de usuários
+- [x] Simulador interativo com abas
+- [x] Seção de impacto social
+- [x] Cards de stakeholders (5 tipos)
+- [x] Sistema de doações PIX
+- [x] Formulário de cadastro Netlify Forms
+- [x] Página de sucesso
+- [x] Modal para informações restritas
+- [x] WhatsApp floating button
+- [x] Menu mobile responsivo
+- [x] Smooth scroll
+- [x] Validação de formulários
+- [x] Máscara de telefone
 
-## 📞 SUPORTE
+### 🔜 Roadmap
 
-Se encontrar problemas após o deploy:
-1. **Console do navegador** (F12) → Tire screenshot dos erros
-2. **Netlify Build Log** → Copie qualquer erro no build
-3. **Teste no Checklist** → Identifique qual teste falhou
-4. **Compartilhe**:
-   - URL do site
-   - Screenshots dos erros
-   - Build log do Netlify
-
----
-
-## 🎉 RESUMO EXECUTIVO
-
-### ✅ O Que Você Tem Agora
-- ✅ Landing page 100% funcional e otimizada
-- ✅ Formulário validando dados corretamente
-- ✅ API IBGE impedindo dados inconsistentes
-- ✅ Página de sucesso com sistema de indicação
-- ✅ Tracking completo de leads
-- ✅ Responsivo em todos os dispositivos
-- ✅ Cross-browser (Chrome, Firefox, Safari, Edge)
-
-### 🚀 Tempo de Deploy
-- **GitHub Web**: 5 minutos
-- **Terminal Git**: 2 minutos
-- **Deploy Netlify**: 1-2 minutos automático
-
-### 📈 Resultado Esperado
-- **Leads qualificados** (sem dados inválidos)
-- **Conversão otimizada** (UX melhorada)
-- **Sistema de indicação** funcionando
-- **Base sólida** para desenvolver a Fase 2
+- [ ] Integração com analytics (Google Analytics/GTM)
+- [ ] Sistema de referral/convite
+- [ ] Blog/Notícias
+- [ ] Área de login
+- [ ] Múltiplos idiomas (EN/ES)
 
 ---
 
-**🚀 PRONTO PARA DECOLAR!**
+## 🧪 Testes
 
-Qualquer dúvida, estou aqui para ajudar! 💪
+Consulte [TESTE-CHECKLIST.md](documentos/TESTE-CHECKLIST.md) para o checklist completo de testes.
+
+**Navegadores testados:**
+- ✅ Chrome 120+
+- ✅ Firefox 121+
+- ✅ Safari 17+
+- ✅ Edge 120+
+- ✅ Mobile Safari (iOS 16+)
+- ✅ Chrome Mobile (Android 13+)
+
+---
+
+## 📝 Licença
+
+Copyright © 2025 **AJUD.AI BRASIL INOVA SIMPLES (I.S.)**  
+CNPJ: 59.150.688/0001-39
+
+Todos os direitos reservados. Este projeto é proprietário e confidencial.
+
+---
+
+## 👥 Equipe
+
+**Desenvolvido com ❤️ por:**
+- Equipe Loomper
+- Contato: loomper.app@gmail.com
+
+---
+
+## 🌐 Links
+
+- **Website:** [loomper.app](https://loomper.app)
+- **WhatsApp:** [+55 11 96585-8142](https://wa.me/5511965858142)
+- **E-mail:** [loomper.app@gmail.com](mailto:loomper.app@gmail.com)
+
+---
+
+## 📞 Suporte
+
+Encontrou algum problema ou tem sugestões?
+
+- 📧 **E-mail:** loomper.app@gmail.com
+- 💬 **WhatsApp:** [Clique aqui](https://wa.me/5511965858142)
+
+---
+
+<div align="center">
+
+### 🇧🇷 FROM BRAZIL TO 🌎 WORLD
+
+**Loomper** - Revolucionando a Logística Automotiva
+
+</div>
