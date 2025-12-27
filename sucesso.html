@@ -3,167 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Realizado com Sucesso! | Loomper</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'loomper-gold': '#F1C40F',
-                        'loomper-orange': '#FF8C00',
-                        'loomper-dark': '#020617',
-                        'loomper-card': '#0F172A',
-                    }
-                }
+    <title>Bem-vindo ao Grupo de Pioneiros! - Loomper</title>
+    <link rel="icon" type="image/png" href="assets/images/logotipo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2850 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .success-container {
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-    </script>
-    
-    <style>
-        .gradient-gold {
-            background: linear-gradient(135deg, #F1C40F 0%, #FF8C00 100%);
+
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff8c00, #ffd700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 4rem;
+            animation: bounce 1s ease infinite;
         }
-        
-        .animate-check {
-            animation: checkmark 0.8s ease;
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
-        
-        @keyframes checkmark {
-            0% { transform: scale(0) rotate(45deg); }
-            50% { transform: scale(1.2) rotate(45deg); }
-            100% { transform: scale(1) rotate(45deg); }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff8c00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .confetti {
-            animation: confetti-fall 3s ease-out;
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b8c1cc;
+            margin-bottom: 40px;
         }
-        
-        @keyframes confetti-fall {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+
+        .info-card {
+            background-color: rgba(26, 35, 50, 0.8);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 2px solid #d4af37;
+        }
+
+        .info-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            color: #b8c1cc;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .beneficios-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .beneficios-list li {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #ff8c00;
+            text-align: left;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .beneficios-list li::before {
+            content: "✅";
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1fa855;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, #ff8c00, #ff6b00);
+            color: white;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.5);
+        }
+
+        .share-section {
+            margin-top: 40px;
+            padding: 25px;
+            background-color: rgba(255, 140, 0, 0.1);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 140, 0, 0.3);
+        }
+
+        .share-section h3 {
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .share-section p {
+            color: #b8c1cc;
+            margin-bottom: 20px;
+        }
+
+        .btn-share {
+            background: linear-gradient(135deg, #25d366, #1fa855);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-share:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #7a8b99;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .btn-container {
+                flex-direction: row;
+            }
         }
     </style>
 </head>
-<body class="bg-loomper-dark text-white font-sans min-h-screen flex items-center justify-center p-4">
-    
-    <!-- Confetti -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div class="confetti absolute" style="left: 10%; animation-delay: 0s; color: #F1C40F;">🎉</div>
-        <div class="confetti absolute" style="left: 20%; animation-delay: 0.3s; color: #FF8C00;">✨</div>
-        <div class="confetti absolute" style="left: 30%; animation-delay: 0.6s; color: #F1C40F;">🚀</div>
-        <div class="confetti absolute" style="left: 40%; animation-delay: 0.9s; color: #FF8C00;">⭐</div>
-        <div class="confetti absolute" style="left: 50%; animation-delay: 1.2s; color: #F1C40F;">🎊</div>
-        <div class="confetti absolute" style="left: 60%; animation-delay: 1.5s; color: #FF8C00;">💫</div>
-        <div class="confetti absolute" style="left: 70%; animation-delay: 1.8s; color: #F1C40F;">🌟</div>
-        <div class="confetti absolute" style="left: 80%; animation-delay: 2.1s; color: #FF8C00;">✨</div>
-        <div class="confetti absolute" style="left: 90%; animation-delay: 2.4s; color: #F1C40F;">🎉</div>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        
+        <h1>Bem-vindo ao Grupo de Pioneiros!</h1>
+        <p class="subtitle">Sua inscrição foi recebida com sucesso. 🎉</p>
+
+        <div class="info-card">
+            <h2>📞 Próximos Passos</h2>
+            <p>Em breve você receberá mais informações por <span class="highlight">WhatsApp e e-mail</span>.</p>
+        </div>
+
+        <div class="info-card">
+            <h2>🎁 Benefícios Exclusivos</h2>
+            <ul class="beneficios-list">
+                <li><strong>Badge "Pioneiro"</strong> no perfil (vitalício)</li>
+                <li><strong>Seu histórico começa AGORA</strong>, antes do mercado</li>
+                <li><strong>Acesso antecipado</strong> a todas as funcionalidades</li>
+                <li><strong>Suporte prioritário</strong> da equipe Loomper</li>
+                <li><strong>Seja referência</strong> no ecossistema desde o dia 1</li>
+            </ul>
+        </div>
+
+        <div class="share-section">
+            <h3>💛 Convide Amigos e Ganhe Vantagens!</h3>
+            <p>Compartilhe o Loomper com amigos motoristas e chapas. Quanto mais pessoas, melhor para todos!</p>
+            <a href="https://wa.me/?text=Acabei%20de%20me%20cadastrar%20no%20Loomper,%20o%20primeiro%20ecossistema%20completo%20da%20logística%20automotiva!%20🚛%20Gratuito%20para%20profissionais.%20Seja%20pioneiro:%20https://loomper.com.br" class="btn-share" target="_blank">
+                💬 Compartilhar no WhatsApp
+            </a>
+            <p style="margin-top: 15px; font-size: 0.9rem;">Seus amigos agradecerão! 🚀</p>
+        </div>
+
+        <div class="btn-container">
+            <a href="https://wa.me/5511965858142?text=Olá!%20Acabei%20de%20me%20cadastrar%20como%20pioneiro%20e%20gostaria%20de%20saber%20mais!" class="btn btn-whatsapp" target="_blank">
+                💬 Falar no WhatsApp
+            </a>
+            <a href="/" class="btn btn-home">Voltar para Home</a>
+        </div>
+
+        <div class="footer-note">
+            <p>Dúvidas? Entre em contato: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbb8b4b5afbaafb49bb7b4b4b6abbea9f5b8b4b6f5b9a9">[email&#160;protected]</a></strong></p>
+            <p style="margin-top: 10px;">WhatsApp: <strong>+55 11 96585-8142</strong></p>
+        </div>
     </div>
 
-    <div class="max-w-2xl w-full z-10">
-        <!-- Success Card -->
-        <div class="bg-loomper-card rounded-3xl p-8 md:p-12 text-center shadow-2xl border border-loomper-gold/20">
-            
-            <!-- Checkmark -->
-            <div class="mb-8">
-                <div class="w-24 h-24 mx-auto gradient-gold rounded-full flex items-center justify-center animate-check">
-                    <i class="fas fa-check text-5xl text-loomper-dark"></i>
-                </div>
-            </div>
-            
-            <!-- Title -->
-            <h1 class="text-4xl md:text-5xl font-black mb-4">
-                <span class="bg-gradient-to-r from-loomper-gold to-loomper-orange bg-clip-text text-transparent">
-                    Bem-vindo ao Grupo de Pioneiros!
-                </span>
-            </h1>
-            
-            <p class="text-xl text-gray-300 mb-8">
-                Sua inscrição foi recebida com sucesso. 🎉
-            </p>
-            
-            <!-- Info Boxes -->
-            <div class="space-y-4 mb-8">
-                <div class="bg-loomper-dark p-6 rounded-xl text-left border border-loomper-gold/10">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 bg-loomper-orange/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fab fa-whatsapp text-2xl text-loomper-gold"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg mb-2">Próximos Passos</h3>
-                            <p class="text-gray-300">Em breve você receberá mais informações por <strong class="text-loomper-gold">WhatsApp</strong> e <strong class="text-loomper-gold">e-mail</strong>.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-loomper-dark p-6 rounded-xl text-left border border-loomper-gold/10">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 bg-loomper-orange/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-gift text-2xl text-loomper-gold"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg mb-2">Benefícios Exclusivos</h3>
-                            <ul class="text-gray-300 space-y-1">
-                                <li>✅ Selo Beta Tester</li>
-                                <li>✅ Prioridade por 6 meses</li>
-                                <li>✅ Suporte direto</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Share Section -->
-            <div class="bg-gradient-to-r from-loomper-orange to-loomper-gold p-8 rounded-2xl mb-8">
-                <h3 class="text-2xl font-bold text-loomper-dark mb-4">
-                    Convide Amigos e Ganhe Vantagens!
-                </h3>
-                <p class="text-loomper-dark mb-6">
-                    Compartilhe o Loomper com amigos motoristas e chapas. Quanto mais pessoas, melhor para todos!
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://wa.me/?text=Acabei de me inscrever no Loomper, o app que vai revolucionar o transporte de veículos! É gratuito para motoristas e chapas. Cadastre-se: https://loomper.app" 
-                       target="_blank"
-                       class="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-lg transition inline-flex items-center justify-center gap-2">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                        Compartilhar no WhatsApp
-                    </a>
-                </div>
-                
-                <p class="text-sm text-loomper-dark/80 mt-4">
-                    Seus amigos agradecerão! 🚀
-                </p>
-            </div>
-            
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/" class="bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-8 py-4 rounded-lg transition">
-                    Voltar para Home
-                </a>
-                <a href="https://wa.me/5511965858142" target="_blank" class="border-2 border-loomper-gold text-loomper-gold hover:bg-loomper-gold hover:text-loomper-dark font-bold px-8 py-4 rounded-lg transition">
-                    Falar com Suporte
-                </a>
-            </div>
-        </div>
-        
-        <!-- Footer Note -->
-        <div class="text-center mt-8 text-gray-400">
-            <p>Dúvidas? Entre em contato: <a href="/cdn-cgi/l/email-protection#83efececeef3e6f1ade2f3f3c3e4eee2eaefade0ecee" class="text-loomper-gold hover:underline"><span class="__cf_email__" data-cfemail="3b575454564b5e49155a4b4b7b5c565a525715585456">[email&#160;protected]</span></a></p>
-        </div>
-    </div>
-    
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Auto redirect after 30 seconds (optional)
-        // setTimeout(() => {
-        //     window.location.href = '/';
-        // }, 30000);
+        // Animação de confete (opcional - efeito visual)
+        console.log('🎉 Bem-vindo ao Loomper! Cadastro realizado com sucesso!');
     </script>
 </body>
 </html>
