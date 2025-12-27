@@ -3,1356 +3,1833 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <title>Loomper | Ecossistema de Logística Automotiva | Transporte de Veículos</title>
-    <meta name="description" content="Loomper é o primeiro ecossistema completo que conecta Motoristas Cegonheiros, Chapas/Ajudantes e Transportadoras em uma única plataforma digital. Revolucione o transporte de veículos no Brasil.">
-    <meta name="keywords" content="transporte de veículos, logística automotiva, cegonheiro, chapa automotivo, ajudante de carga, última milha automotiva, carga e descarga de veículos, pátio automotivo, ESG logística, compliance transporte">
-    <meta name="author" content="Loomper - AJUD.AI BRASIL">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://loomper.app/">
-    <meta property="og:title" content="Loomper | Ecossistema de Logística Automotiva">
-    <meta property="og:description" content="O primeiro ecossistema completo de logística automotiva do Brasil">
-    <meta property="og:image" content="https://loomper.app/assets/images/og-image.jpg">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/icon-l.png">
-    
-    <!-- Fonts & CSS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'loomper-gold': '#F1C40F',
-                        'loomper-orange': '#FF8C00',
-                        'loomper-dark': '#020617',
-                        'loomper-card': '#0F172A',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <meta name="description" content="Loomper - O Primeiro Ecossistema Completo da Logística Automotiva. Conectamos Motoristas, Chapas e Transportadoras em uma única plataforma digital.">
+    <meta name="keywords" content="logística automotiva, transporte de veículos, cegonheiro, motorista, transportadora, ecossistema 4.0">
+    <meta property="og:title" content="Loomper - Ecossistema da Logística Automotiva">
+    <meta property="og:description" content="Conectamos profissionais do transporte de veículos. Gratuito para trabalhadores. Seja um pioneiro!">
+    <meta property="og:image" content="assets/images/logotipo.png">
+    <meta property="og:url" content="https://loomper.com.br">
+    <title>Loomper - Logística Automotiva 4.0</title>
+    <link rel="icon" type="image/png" href="assets/images/logotipo.png">
     <style>
+        /* ========================================
+           RESET & BASE STYLES
+        ======================================== */
         * {
-            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .gradient-gold {
-            background: linear-gradient(135deg, #F1C40F 0%, #FF8C00 100%);
+
+        :root {
+            --primary-orange: #ff8c00;
+            --primary-yellow: #ffd700;
+            --dark-bg: #0a1628;
+            --dark-card: #1a2332;
+            --text-white: #ffffff;
+            --text-gray: #b8c1cc;
+            --border-gold: #d4af37;
+            --success-green: #25d366;
         }
-        
-        .text-gradient {
-            background: linear-gradient(135deg, #F1C40F 0%, #FF8C00 100%);
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========================================
+           HEADER & NAVIGATION
+        ======================================== */
+        header {
+            background-color: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-white);
+        }
+
+        /* Menu Hambúrguer */
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1002;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: var(--primary-orange);
+            margin: 6px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 22, 40, 0.98);
+            display: none;
+            z-index: 999;
+            padding-top: 80px;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        .menu-overlay nav {
+            text-align: center;
+        }
+
+        .menu-overlay nav a {
+            display: block;
+            color: var(--text-white);
+            text-decoration: none;
+            padding: 20px;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 140, 0, 0.1);
+        }
+
+        .menu-overlay nav a:hover {
+            background-color: var(--primary-orange);
+            color: var(--dark-bg);
+        }
+
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+        .hero {
+            padding: 100px 20px 50px;
+            text-align: center;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2850 100%);
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero .highlight {
+            color: var(--primary-yellow);
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero strong {
+            color: var(--primary-yellow);
+            font-weight: bold;
+        }
+
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-orange), #ff6b00);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-yellow);
+            border: 2px solid var(--border-gold);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-yellow);
+            color: var(--dark-bg);
+        }
+
+        /* ========================================
+           SECTION COMUM
+        ======================================== */
+        section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        section p {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 35px;
+        }
+
+        /* ========================================
+           3 PERFIS
+        ======================================== */
+        .perfis-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .perfil-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .perfil-card:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-5px);
+        }
+
+        .perfil-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .perfil-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-yellow);
+        }
+
+        .perfil-card p {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .perfil-card a {
+            color: var(--primary-yellow);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .perfil-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========================================
+           COMO FUNCIONA
+        ======================================== */
+        .como-funciona {
+            background: linear-gradient(135deg, #0f1f3d 0%, #1a2850 100%);
+            padding: 50px 20px;
+        }
+
+        .como-funciona h2 .highlight {
+            color: var(--primary-yellow);
+        }
+
+        .como-funciona-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto 35px;
+        }
+
+        .tab-btn {
+            padding: 18px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: var(--dark-card);
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-orange), #ff6b00);
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background-color: #2a3545;
+        }
+
+        .fluxo-imagem {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .fluxo-imagem img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .passos-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .passo-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid var(--primary-orange);
+        }
+
+        .passo-numero {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .passo-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-yellow);
+        }
+
+        .passo-card p {
+            text-align: left;
+            margin: 0;
+        }
+
+        /* ========================================
+           SEJA UM PIONEIRO
+        ======================================== */
+        .pioneiro-section {
+            text-align: center;
+        }
+
+        .pioneiro-section h2 .highlight {
+            color: var(--primary-yellow);
+        }
+
+        .beneficios-card {
+            background: linear-gradient(135deg, var(--primary-orange), #ff6b00);
+            border-radius: 12px;
+            padding: 35px 25px;
+            margin: 35px auto;
+            max-width: 500px;
+        }
+
+        .beneficios-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .beneficios-lista {
+            list-style: none;
+            text-align: left;
+        }
+
+        .beneficios-lista li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .beneficios-lista li::before {
+            content: "✅";
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* ========================================
+           STAKEHOLDERS
+        ======================================== */
+        .stakeholders-section {
+            background: linear-gradient(135deg, #0a1628 0%, #1a2850 100%);
+        }
+
+        .stakeholders-section h2 .highlight {
+            color: var(--primary-yellow);
+        }
+
+        .stakeholders-grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .stakeholder-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stakeholder-card:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-5px);
+        }
+
+        .stakeholder-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .stakeholder-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-white);
+        }
+
+        .stakeholder-card p {
+            text-align: left;
+            margin: 0;
+        }
+
+        /* ========================================
+           APOIE QUEM MOVE
+        ======================================== */
+        .apoie-section {
+            text-align: center;
+        }
+
+        .apoie-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .apoie-section h2 .highlight {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-yellow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .apoie-section > p {
+            color: var(--text-gray);
+            margin-bottom: 35px;
         }
-        
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(241, 196, 15, 0.2);
+
+        .apoie-section > p small {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-gray);
         }
-        
-        .navbar-scroll {
-            backdrop-filter: blur(10px);
-            background-color: rgba(2, 6, 23, 0.95);
+
+        .pix-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            border: 2px solid var(--border-gold);
         }
-        
-        /* Modal */
+
+        .pix-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .pix-key {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            color: var(--primary-yellow);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .btn-copy-pix {
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .btn-copy-pix:hover {
+            background-color: #ff6b00;
+            transform: translateY(-2px);
+        }
+
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .valor-btn {
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .valor-btn:hover {
+            background-color: #ff6b00;
+            transform: scale(1.05);
+        }
+
+        .valor-btn.outro {
+            background-color: white;
+            color: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        footer {
+            background-color: #050d1a;
+            padding: 40px 20px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 140, 0, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-orange);
+        }
+
+        .footer-contact {
+            margin-bottom: 20px;
+        }
+
+        .footer-contact p {
+            color: var(--text-gray);
+            margin: 5px 0;
+        }
+
+        .footer-contact a {
+            color: var(--primary-yellow);
+            text-decoration: none;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 140, 0, 0.1);
+        }
+
+        .footer-note strong {
+            color: var(--primary-yellow);
+        }
+
+        /* ========================================
+           MODAL FORMULÁRIO
+        ======================================== */
         .modal {
             display: none;
             position: fixed;
-            z-index: 999;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
         }
-        
+
         .modal.active {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .modal-content {
-            background: #0F172A;
-            border-radius: 16px;
-            padding: 2rem;
-            max-width: 600px;
+            background: linear-gradient(135deg, #1a2850 0%, #0a1628 100%);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
-            animation: slideIn 0.3s ease;
+            border: 2px solid var(--border-gold);
         }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-white);
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
         }
-        
-        /* Placeholder Images */
-        .placeholder-img {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+
+        .modal-close:hover {
+            color: var(--primary-orange);
+        }
+
+        .modal-content h2 {
+            margin-bottom: 10px;
+            color: var(--primary-yellow);
+        }
+
+        .modal-content p {
+            margin-bottom: 25px;
+            color: var(--text-gray);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-white);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid rgba(255, 140, 0, 0.3);
+            border-radius: 8px;
+            background-color: rgba(26, 35, 50, 0.8);
+            color: var(--text-white);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+        }
+
+        .whatsapp-container {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .whatsapp-container .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .btn-test-whatsapp {
+            background-color: var(--success-green);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .btn-test-whatsapp:hover {
+            background-color: #1fa855;
+            transform: scale(1.05);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-orange), #ff6b00);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error select {
+            border-color: #ff4444;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        /* Autocomplete cidade */
+        #cidadeSuggestions {
+            background-color: var(--dark-card);
+            border: 2px solid var(--primary-orange);
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .cidade-suggestion {
+            padding: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            color: var(--text-white);
+        }
+
+        .cidade-suggestion:hover {
+            background-color: rgba(255, 140, 0, 0.2);
+        }
+
+        /* ========================================
+           WHATSAPP FLUTUANTE
+        ======================================== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--success-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #64748b;
-            font-size: 3rem;
-        }
-        
-        /* Tabs */
-        .tab-button {
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+            z-index: 999;
             transition: all 0.3s ease;
         }
-        
-        .tab-button.active {
-            background: linear-gradient(135deg, #F1C40F 0%, #FF8C00 100%);
-            color: #020617;
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.7);
         }
-        
-        .tab-content {
-            display: none;
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .cta-container {
+                flex-direction: row;
+                max-width: 600px;
+            }
+
+            .perfis-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .como-funciona-tabs {
+                flex-direction: row;
+                max-width: 100%;
+            }
+
+            .stakeholders-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .valores-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .footer-content {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                text-align: left;
+                gap: 30px;
+            }
+
+            .footer-links {
+                justify-content: flex-start;
+                flex-direction: column;
+            }
         }
-        
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
+
+        /* ========================================
+           UTILITY CLASSES
+        ======================================== */
+        .hidden {
+            display: none !important;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        .text-center {
+            text-align: center;
         }
     </style>
 </head>
-<body class="bg-loomper-dark text-white font-sans">
+<body>
 
-    <!-- HEADER -->
-    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <a href="#hero" class="flex items-center space-x-2">
-                    <img src="assets/images/ícone-l.png" alt="Loomper" class="h-10">
-                    <span class="text-2xl font-black text-white">Loomper</span>
-                </a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#ecossistema" class="hover:text-loomper-gold transition">O Ecossistema</a>
-                    <a href="#simulador" class="hover:text-loomper-gold transition">Simulador</a>
-                    <a href="#apoie" class="hover:text-loomper-gold transition">Apoie</a>
-                    <button onclick="scrollToCadastro()" class="bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition">
-                        QUERO SER PIONEIRO
-                    </button>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-white">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-4">
-                <a href="#ecossistema" class="block hover:text-loomper-gold transition">O Ecossistema</a>
-                <a href="#simulador" class="block hover:text-loomper-gold transition">Simulador</a>
-                <a href="#apoie" class="block hover:text-loomper-gold transition">Apoie</a>
-                <button onclick="scrollToCadastro()" class="w-full bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition">
-                    QUERO SER PIONEIRO
-                </button>
-            </div>
+    <!-- ========================================
+         HEADER
+    ======================================== -->
+    <header>
+        <div class="header-container">
+            <a href="#hero" class="logo-link">
+                <img src="assets/images/logotipo.png" alt="Loomper Logo" class="logo">
+                <span class="logo-text">Loomper</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-    </nav>
+    </header>
 
-    <!-- HERO SECTION -->
-    <section id="hero" class="min-h-screen flex items-center pt-20">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <div class="inline-block bg-loomper-card border border-loomper-gold px-4 py-2 rounded-full">
-                        <span class="text-loomper-gold font-bold">🚀 LOGÍSTICA 4.0</span>
-                    </div>
-                    
-                    <h1 class="text-5xl md:text-6xl font-black leading-tight">
-                        <span class="text-gradient">Loomper</span><br>
-                        O Ecossistema que Revoluciona o Transporte de Veículos no Brasil
-                    </h1>
-                    
-                    <p class="text-xl text-gray-300">
-                        Conectamos Motoristas Cegonheiros, Chapas/Ajudantes e Transportadoras em um único ecossistema digital. 
-                        <strong class="text-loomper-gold">100% Gratuito</strong> para profissionais.
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button onclick="scrollToCadastro()" class="bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-8 py-4 rounded-lg text-lg transition hover-lift">
-                            QUERO SER PIONEIRO
-                        </button>
-                        <button onclick="scrollToSimulador()" class="border-2 border-loomper-gold text-loomper-gold hover:bg-loomper-gold hover:text-loomper-dark font-bold px-8 py-4 rounded-lg text-lg transition">
-                            <i class="fas fa-play mr-2"></i> Ver na Prática
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="placeholder-img w-full h-96 rounded-2xl" style="background-image: url('assets/images/motorista-ajudante-logistica-urbana.webp.png'); background-size: cover; background-position: center;">
-                </div>
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <nav>
+            <a href="#hero">Início</a>
+            <a href="#perfis">Perfis</a>
+            <a href="#como-funciona">Como Funciona</a>
+            <a href="#pioneiro">Seja Pioneiro</a>
+            <a href="#stakeholders">Parcerias</a>
+            <a href="#apoie">Apoie</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </div>
+
+    <!-- ========================================
+         HERO SECTION
+    ======================================== -->
+    <section class="hero" id="hero">
+        <h1>O Primeiro Ecossistema Completo da <span class="highlight">Logística Automotiva</span></h1>
+        <p>Conectamos Motoristas Cegonheiros, Chapas/Ajudantes e Transportadoras em um único ecossistema digital. <strong>Gratuito para profissionais.*</strong></p>
+        <div class="cta-container">
+            <button class="btn btn-primary" onclick="openModal('pioneiro')">QUERO SER PIONEIRO</button>
+            <a href="#como-funciona" class="btn btn-secondary">▶ Ver na Prática</a>
+        </div>
+    </section>
+
+    <!-- ========================================
+         3 PERFIS
+    ======================================== -->
+    <section id="perfis">
+        <h2>Três Perfis. Uma Plataforma. <span class="highlight">Resultados Revolucionários.</span></h2>
+        <p>Escolha seu perfil e descubra como o Loomper transforma sua operação</p>
+
+        <div class="perfis-container">
+            <!-- Motorista -->
+            <div class="perfil-card">
+                <div class="perfil-icon">🚛</div>
+                <h3>MOTORISTA CEGONHEIRO</h3>
+                <p>Encontre chapas qualificados rapidamente. Gerencie sua operação com segurança e transparência.</p>
+                <a href="#como-funciona">Ver simulação →</a>
+            </div>
+
+            <!-- Chapa/Ajudante -->
+            <div class="perfil-card">
+                <div class="perfil-icon">👷</div>
+                <h3>CHAPA / AJUDANTE</h3>
+                <p>Construa seu histórico profissional. Receba oportunidades direto no celular. 100% gratuito.</p>
+                <a href="#como-funciona">Ver simulação →</a>
+            </div>
+
+            <!-- Transportadora -->
+            <div class="perfil-card">
+                <div class="perfil-icon">🏢</div>
+                <h3>TRANSPORTADORA</h3>
+                <p>Gerencie toda operação. Relatórios ESG automáticos. Compliance OEA. Otimize custos.</p>
+                <a href="#como-funciona">Ver simulação →</a>
             </div>
         </div>
     </section>
 
-    <!-- ECOSSISTEMA SECTION -->
-    <section id="ecossistema" class="py-20 bg-gradient-to-b from-loomper-dark to-loomper-card">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black mb-4">
-                    O Primeiro Ecossistema Completo da <span class="text-gradient">Logística Automotiva</span>
-                </h2>
-                <p class="text-xl text-gray-300">Três perfis. Uma plataforma. Resultados revolucionários.</p>
+    <!-- ========================================
+         COMO FUNCIONA NA PRÁTICA
+    ======================================== -->
+    <section class="como-funciona" id="como-funciona">
+        <h2>Como Funciona na <span class="highlight">Prática</span></h2>
+        <p>Experimente a jornada completa de cada usuário</p>
+
+        <div class="como-funciona-tabs">
+            <button class="tab-btn active" data-tab="motorista">🚛 Motorista</button>
+            <button class="tab-btn" data-tab="chapa">👷 Chapa</button>
+            <button class="tab-btn" data-tab="transportadora">🏢 Transportadora</button>
+        </div>
+
+        <!-- Imagem do Fluxo -->
+        <div class="fluxo-imagem">
+            <img src="assets/images/comofunciona_motorista.png" alt="Fluxo Motorista" id="fluxoImagem">
+        </div>
+
+        <!-- Passos do Motorista -->
+        <div class="passos-container" id="passos-motorista">
+            <div class="passo-card">
+                <div class="passo-numero">1</div>
+                <h4>Crie sua Vaga</h4>
+                <p>Informe origem, destino, horário e valor. Simples, rápido e intuitivo.</p>
             </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card Motorista -->
-                <div class="bg-loomper-card p-8 rounded-2xl hover-lift cursor-pointer" onclick="setActiveTab('motorista')">
-                    <div class="w-16 h-16 bg-loomper-orange rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-truck text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">MOTORISTA CEGONHEIRO</h3>
-                    <p class="text-gray-300 mb-4">
-                        Encontre chapas qualificados rapidamente. Gerencie sua operação com segurança e transparência.
-                    </p>
-                    <button onclick="setActiveTab('motorista')" class="text-loomper-gold hover:text-loomper-orange transition">
-                        Ver simulação <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-                
-                <!-- Card Chapa -->
-                <div class="bg-loomper-card p-8 rounded-2xl hover-lift cursor-pointer" onclick="setActiveTab('chapa')">
-                    <div class="w-16 h-16 bg-loomper-orange rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-user-hard-hat text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">CHAPA / AJUDANTE</h3>
-                    <p class="text-gray-300 mb-4">
-                        Construa seu histórico profissional. Receba oportunidades direto no celular. 100% gratuito.
-                    </p>
-                    <button onclick="setActiveTab('chapa')" class="text-loomper-gold hover:text-loomper-orange transition">
-                        Ver simulação <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-                
-                <!-- Card Transportadora -->
-                <div class="bg-loomper-card p-8 rounded-2xl hover-lift cursor-pointer" onclick="setActiveTab('transportadora')">
-                    <div class="w-16 h-16 bg-loomper-orange rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-building text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">TRANSPORTADORA</h3>
-                    <p class="text-gray-300 mb-4">
-                        Gerencie toda operação. Relatórios ESG automáticos. Compliance OEA. Otimize custos.
-                    </p>
-                    <button onclick="setActiveTab('transportadora')" class="text-loomper-gold hover:text-loomper-orange transition">
-                        Ver simulação <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
+            <div class="passo-card">
+                <div class="passo-numero">2</div>
+                <h4>Receba Candidatos</h4>
+                <p>Veja perfis e avaliações das chapas. Selecione os mais qualificados.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">3</div>
+                <h4>Confirme o Chapa</h4>
+                <p>Selecione e notifique automaticamente. Chat integrado para alinhar detalhes.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">4</div>
+                <h4>Trabalhem Juntos</h4>
+                <p>GPS rastreia localização. Chat integrado. Segurança para ambos durante toda operação.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">5</div>
+                <h4>Finalize e Avalie</h4>
+                <p>Marque conclusão no app. Avalie o profissional. Histórico fica registrado para próximas contratações.</p>
+            </div>
+        </div>
+
+        <!-- Passos do Chapa (escondido inicialmente) -->
+        <div class="passos-container hidden" id="passos-chapa">
+            <div class="passo-card">
+                <div class="passo-numero">1</div>
+                <h4>Busque Vagas</h4>
+                <p>Veja oportunidades em tempo real. Filtre por região, valor e horário.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">2</div>
+                <h4>Candidate-se</h4>
+                <p>Clique para se candidatar. Motorista vê seu perfil e avaliações.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">3</div>
+                <h4>Seja Confirmado</h4>
+                <p>Receba notificação instantânea. Detalhes da viagem no app.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">4</div>
+                <h4>Execute o Trabalho</h4>
+                <p>Localização compartilhada. Chat direto com motorista. Segurança total.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">5</div>
+                <h4>Construa seu Histórico</h4>
+                <p>Receba avaliação. Histórico cresce. Mais chances em próximas vagas.</p>
+            </div>
+        </div>
+
+        <!-- Passos da Transportadora (escondido inicialmente) -->
+        <div class="passos-container hidden" id="passos-transportadora">
+            <div class="passo-card">
+                <div class="passo-numero">1</div>
+                <h4>Gerencie Frota</h4>
+                <p>Visualize todos motoristas e operações em tempo real.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">2</div>
+                <h4>Acompanhe Operações</h4>
+                <p>Dashboard com status de cada viagem. Alertas automáticos.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">3</div>
+                <h4>Relatórios Automáticos</h4>
+                <p>ESG, Compliance OEA, performance. Tudo gerado automaticamente.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">4</div>
+                <h4>Otimize Custos</h4>
+                <p>Análise de rotas, tempos e custos operacionais.</p>
+            </div>
+            <div class="passo-card">
+                <div class="passo-numero">5</div>
+                <h4>Escale com Inteligência</h4>
+                <p>Dados para tomada de decisão. Cresça com eficiência.</p>
             </div>
         </div>
     </section>
 
-    <!-- SIMULADOR SECTION -->
-    <section id="simulador" class="py-20 bg-loomper-dark">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-black mb-4">Como Funciona na Prática</h2>
-                <p class="text-xl text-gray-300">Experimente a jornada completa de cada usuário</p>
+    <!-- ========================================
+         SEJA UM PIONEIRO
+    ======================================== -->
+    <section class="pioneiro-section" id="pioneiro">
+        <h2>Seja um <span class="highlight">Pioneiro</span></h2>
+        <p>Cadastre-se agora e garanta acesso prioritário quando lançarmos</p>
+
+        <div class="beneficios-card">
+            <h3>🎁 Benefícios Exclusivos</h3>
+            <ul class="beneficios-lista">
+                <li><strong>Badge "Pioneiro"</strong> no perfil (vitalício)</li>
+                <li><strong>Seu histórico começa AGORA</strong>, antes do mercado</li>
+                <li><strong>Acesso antecipado</strong> a todas as funcionalidades</li>
+                <li><strong>Suporte prioritário</strong> da equipe Loomper</li>
+                <li><strong>Seja referência</strong> no ecossistema desde o dia 1</li>
+            </ul>
+        </div>
+
+        <button class="btn btn-primary" onclick="openModal('pioneiro')">GARANTA SEU ACESSO</button>
+    </section>
+
+    <!-- ========================================
+         MÚLTIPLOS STAKEHOLDERS
+    ======================================== -->
+    <section class="stakeholders-section" id="stakeholders">
+        <h2>Ecossistema Aberto para <span class="highlight">Múltiplos Stakeholders</span></h2>
+        <p>Modelos de negócio adaptados. Valor entregue para toda a cadeia.</p>
+
+        <div class="stakeholders-grid">
+            <!-- Transportadoras -->
+            <div class="stakeholder-card" onclick="openModal('transportadora-b2b')">
+                <div class="stakeholder-icon">🏢</div>
+                <h3>TRANSPORTADORAS</h3>
+                <p>Gerencie toda operação. Relatórios ESG automáticos. Compliance OEA. Otimize custos.</p>
             </div>
-            
-            <!-- Tabs -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button onclick="setActiveTab('motorista')" id="tab-motorista" class="tab-button active px-8 py-4 rounded-lg font-bold text-lg">
-                    <i class="fas fa-truck mr-2"></i> Motorista
-                </button>
-                <button onclick="setActiveTab('chapa')" id="tab-chapa" class="tab-button bg-loomper-card px-8 py-4 rounded-lg font-bold text-lg">
-                    <i class="fas fa-user-hard-hat mr-2"></i> Chapa
-                </button>
-                <button onclick="setActiveTab('transportadora')" id="tab-transportadora" class="tab-button bg-loomper-card px-8 py-4 rounded-lg font-bold text-lg">
-                    <i class="fas fa-building mr-2"></i> Transportadora
-                </button>
+
+            <!-- Montadoras -->
+            <div class="stakeholder-card" onclick="openModal('montadora')">
+                <div class="stakeholder-icon">🏭</div>
+                <h3>MONTADORAS</h3>
+                <p>Conecte sua produção diretamente aos transportadores. Otimize logística de distribuição.</p>
             </div>
-            
-            <!-- Tab Content Motorista -->
-            <div id="content-motorista" class="tab-content active">
-                <div class="grid md:grid-cols-2 gap-12 items-start">
-                    <div class="space-y-8">
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">1</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Crie sua Vaga</h4>
-                                    <p class="text-gray-300">Informe origem, destino, horário e valor da diária. O app encontra chapas disponíveis automaticamente.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">2</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Receba Candidatos</h4>
-                                    <p class="text-gray-300">Veja perfil, avaliações e histórico completo. Escolha o melhor profissional para sua operação.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">3</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Confirme o Chapa</h4>
-                                    <p class="text-gray-300">Sistema notifica automaticamente. Ambos recebem dados do encontro e início da jornada.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">4</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Trabalhem Juntos</h4>
-                                    <p class="text-gray-300">GPS rastreia localização. Chat integrado. Segurança para ambos durante toda operação.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">5</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Finalize e Avalie</h4>
-                                    <p class="text-gray-300">Marque conclusão no app. Avalie o profissional. Histórico fica registrado para próximas contratações.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <img src="assets/images/comofunciona_motorista.png" 
-                         alt="Como Funciona - Motorista" 
-                         class="w-full h-auto rounded-2xl shadow-2xl sticky top-24">
-                </div>
+
+            <!-- Seguradoras -->
+            <div class="stakeholder-card" onclick="openModal('seguradora')">
+                <div class="stakeholder-icon">🛡️</div>
+                <h3>SEGURADORAS</h3>
+                <p>Reduza sinistralidade. Precifique com dados reais. Agilize liquidação de sinistros.</p>
             </div>
-            
-            <!-- Tab Content Chapa -->
-            <div id="content-chapa" class="tab-content">
-                <div class="grid md:grid-cols-2 gap-12 items-start">
-                    <div class="space-y-8">
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">1</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Cadastre seu Perfil</h4>
-                                    <p class="text-gray-300">Nome, foto, experiência e regiões de atuação. Grátis e rápido. Comece a receber ofertas imediatamente.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">2</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Receba Ofertas</h4>
-                                    <p class="text-gray-300">Notificações direto no celular. Veja todas informações: local, horário, valor, perfil do motorista.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">3</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Aceite o Trabalho</h4>
-                                    <p class="text-gray-300">Um clique para confirmar. Receba dados do encontro. Rota e instruções no app.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">4</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Vá ao Local</h4>
-                                    <p class="text-gray-300">GPS guia até ponto de encontro. Chat com motorista. Segurança e transparência total.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">5</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Receba Instantaneamente</h4>
-                                    <p class="text-gray-300">Pagamento confirmado no app. Construa histórico e reputação. Melhores avaliações = mais oportunidades.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <img src="assets/images/comofunciona_chapa.png" 
-                         alt="Como Funciona - Chapa" 
-                         class="w-full h-auto rounded-2xl shadow-2xl sticky top-24">
-                </div>
+
+            <!-- Governo -->
+            <div class="stakeholder-card" onclick="openModal('governo')">
+                <div class="stakeholder-icon">🏛️</div>
+                <h3>GOVERNO</h3>
+                <p>Dados para políticas públicas. Rastreamento para segurança. Compliance automatizado.</p>
             </div>
-            
-            <!-- Tab Content Transportadora -->
-            <div id="content-transportadora" class="tab-content">
-                <div class="grid md:grid-cols-2 gap-12 items-start">
-                    <div class="space-y-8">
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">1</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Cadastre sua Frota</h4>
-                                    <p class="text-gray-300">Importe motoristas e veículos. Integração com sistemas ERP. Dashboard completo em tempo real.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">2</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Acompanhe Tudo</h4>
-                                    <p class="text-gray-300">Rastreamento GPS de frota. Gestão de chapas. Alertas automáticos. Controle total da operação.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">3</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Relatórios ESG</h4>
-                                    <p class="text-gray-300">Dados sociais automáticos. Impacto em empregos gerados. Compliance e certificações atualizadas.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">4</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Compliance OEA</h4>
-                                    <p class="text-gray-300">Documentação digital organizada. Auditorias facilitadas. Certificação Operador Econômico Autorizado.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-loomper-card p-6 rounded-xl">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-loomper-orange rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white font-bold text-xl">5</span>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Otimize Custos</h4>
-                                    <p class="text-gray-300">Análise de performance. Redução de tempo ocioso. ROI mensurável. Decisões baseadas em dados reais.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <img src="assets/images/comofunciona_transportadora.png" 
-                         alt="Como Funciona - Transportadora" 
-                         class="w-full h-auto rounded-2xl shadow-2xl sticky top-24">
-                </div>
+
+            <!-- Investidor Anjo -->
+            <div class="stakeholder-card" onclick="openModal('investidor')">
+                <div class="stakeholder-icon">📈</div>
+                <h3>INVESTIDOR ANJO</h3>
+                <p>Mercado bilionário. Setor inexplorado digitalmente. Potencial LATAM. ROI ~18 meses.</p>
             </div>
         </div>
     </section>
 
-    <!-- IMPACTO SOCIAL -->
-    <section class="py-20 bg-gradient-to-b from-loomper-card to-loomper-dark">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black mb-4">
-                    Transformando a Logística com <span class="text-gradient">Impacto Social Mensurável</span>
-                </h2>
-            </div>
-            
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-5xl font-black text-loomper-gold mb-2">+500</div>
-                    <div class="text-xl text-gray-300">Profissionais Conectados</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-5xl font-black text-loomper-gold mb-2">100%</div>
-                    <div class="text-xl text-gray-300">Gratuito para Trabalhadores</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-5xl font-black text-loomper-gold mb-2">🌱</div>
-                    <div class="text-xl text-gray-300">Crescimento Sustentável</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-5xl font-black text-loomper-gold mb-2">🇧🇷</div>
-                    <div class="text-xl text-gray-300">Cidadania Digital</div>
-                </div>
+    <!-- ========================================
+         APOIE QUEM MOVE O BRASIL
+    ======================================== -->
+    <section class="apoie-section" id="apoie">
+        <h2>Apoie Quem <span class="highlight">MOVE</span> o Brasil</h2>
+        <p>Toda contribuição é voluntária e fortalece o ecossistema da logística automotiva brasileira.<br>
+        <small>*Plano básico sempre gratuito. Recursos premium opcionais.</small></p>
+
+        <div class="pix-card">
+            <h3>Chave PIX</h3>
+            <div class="pix-key" id="pixKey"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbb8b4b5afbaafb49bb7b4b4b6abbea9f5b8b4b6f5b9a9">[email&#160;protected]</a></div>
+            <button class="btn-copy-pix" onclick="copyPixKey()">📋 Copiar Chave PIX</button>
+
+            <h3>Escolha o valor:</h3>
+            <div class="valores-grid">
+                <button class="valor-btn" onclick="selectValue('20')">R$ 20</button>
+                <button class="valor-btn" onclick="selectValue('50')">R$ 50</button>
+                <button class="valor-btn" onclick="selectValue('75')">R$ 75</button>
+                <button class="valor-btn outro" onclick="selectValue('outro')">💛 Outro valor</button>
             </div>
         </div>
     </section>
 
-    <!-- STAKEHOLDERS -->
-    <section class="py-20 bg-loomper-dark">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black mb-4">
-                    Ecossistema Aberto para <span class="text-gradient">Múltiplos Stakeholders</span>
-                </h2>
-                <p class="text-xl text-gray-300">Modelos de negócio adaptados. Valor entregue para toda a cadeia.</p>
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+    <footer id="contato">
+        <div class="footer-content">
+            <div>
+                <h3>Loomper</h3>
+                <p>Logística Automotiva 4.0</p>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Investidor -->
-                <div class="bg-loomper-card p-8 rounded-2xl hover-lift">
-                    <div class="w-16 h-16 bg-loomper-orange rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-line text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">INVESTIDOR ANJO</h3>
-                    <p class="text-gray-300 mb-6">
-                        Modelo SaaS B2B escalável. TAM bilionário. Tração comprovada. Impacto social mensurável.
-                    </p>
-                    <button onclick="openModal('modal-investidor')" class="text-loomper-gold hover:text-loomper-orange transition font-bold">
-                        Solicitar Pitch Deck <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
+            <div>
+                <h3>Links Úteis</h3>
+                <div class="footer-links">
+                    <a href="#perfis">Perfis</a>
+                    <a href="#como-funciona">Como Funciona</a>
+                    <a href="#pioneiro">Seja Pioneiro</a>
+                    <a href="#stakeholders">Parcerias</a>
                 </div>
-                
-                <!-- Governo -->
-                <div class="bg-loomper-card p-8 rounded-2xl hover-lift">
-                    <div class="w-16 h-16 bg-loomper-orange rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-landmark text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">GOVERNO</h3>
-                    <p class="text-gray-300 mb-6">
-                        Formalização do mercado. Dados para políticas públicas. Geração de empregos digitais formais.
-                    </p>
-                    <button onclick="openModal('modal-governo')" class="text-loomper-gold hover:text-loomper-orange transition font-bold">
-                        Ver Dados Sociais <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-                
-                <!-- Montadoras -->
-                <div class="bg-loomper-card p-8 rounded-2xl hover-lift">
-                    <div class="w-16 h-16 bg-loomper-orange rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-industry text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">MONTADORAS</h3>
-                    <p class="text-gray-300 mb-6">
-                        API integrada. Rastreamento última milha. Satisfação cliente final. Redução de sinistros.
-                    </p>
-                    <button onclick="openModal('modal-montadoras')" class="text-loomper-gold hover:text-loomper-orange transition font-bold">
-                        Ver Versão Integrada <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-                
-                <!-- Seguradoras -->
-                <div class="bg-loomper-card p-8 rounded-2xl hover-lift">
-                    <div class="w-16 h-16 bg-loomper-orange rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-shield-halved text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">SEGURADORAS ⭐</h3>
-                    <p class="text-gray-300 mb-6">
-                        Profissionais qualificados reduzem sinistros. Dados comportamentais. Precificação dinâmica de apólices.
-                    </p>
-                    <button onclick="openModal('modal-seguradoras')" class="text-loomper-gold hover:text-loomper-orange transition font-bold">
-                        Conhecer Benefícios <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-                
-                <!-- Transportadoras -->
-                <div class="bg-loomper-card p-8 rounded-2xl hover-lift">
-                    <div class="w-16 h-16 bg-loomper-orange rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-building text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">TRANSPORTADORAS ⭐</h3>
-                    <p class="text-gray-300 mb-6">
-                        Dashboard executivo. Gestão de frota. Relatórios ESG. Compliance OEA. ROI comprovado.
-                    </p>
-                    <button onclick="openModal('modal-transportadoras')" class="text-loomper-gold hover:text-loomper-orange transition font-bold">
-                        Ver Otimização Completa <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Contato</h3>
+                <p>Email: <a href="/cdn-cgi/l/email-protection#ec8f8382988d9883ac808383819c899ec28f8381c28e9e"><span class="__cf_email__" data-cfemail="a7c4c8c9d3c6d3c8e7cbc8c8cad7c2d589c4c8ca89c5d5">[email&#160;protected]</span></a></p>
+                <p>WhatsApp: <a href="https://wa.me/5511965858142">+55 11 96585-8142</a></p>
+                <p>PIX: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8deee2e3f9ecf9e2cde1e2e2e0fde8ffa3eee2e0a3efff">[email&#160;protected]</a></p>
             </div>
         </div>
-    </section>
-
-    <!-- APOIE -->
-    <section id="apoie" class="py-20 bg-loomper-dark">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
-                    Apoie Quem <span class="text-gradient">MOVE</span> o Brasil
-                </h2>
-                <p class="text-xl text-gray-300">
-                    100% gratuito para trabalhadores. Sua contribuição faz a diferença.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-                <!-- Coluna Esquerda: Imagem -->
-                <div class="order-2 md:order-1">
-                    <img src="assets/images/apoiequemmove.png" 
-                         alt="Apoie Quem Move o Brasil" 
-                         class="w-full rounded-2xl shadow-2xl border-4 border-loomper-gold/20">
-                </div>
-                
-                <!-- Coluna Direita: PIX e Botões -->
-                <div class="order-1 md:order-2 space-y-8">
-                    <!-- Chave PIX -->
-                    <div class="bg-loomper-card p-8 rounded-2xl border-2 border-loomper-gold/20">
-                        <p class="text-2xl font-bold text-white mb-4 text-center">Chave PIX</p>
-                        <div class="bg-loomper-dark p-4 rounded-xl mb-4">
-                            <code class="text-xl text-loomper-gold font-mono break-all"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb878484869b8e99c58a9b9bab8c868a8287c5888486">[email&#160;protected]</a></code>
-                        </div>
-                        <button onclick="copyPix()" class="w-full bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-4 rounded-xl transition transform hover:scale-105">
-                            <i class="fas fa-copy mr-2"></i> Copiar Chave PIX
-                        </button>
-                    </div>
-                    
-                    <!-- Botões de Valores -->
-                    <div class="bg-loomper-card p-8 rounded-2xl border-2 border-loomper-gold/20">
-                        <p class="text-lg font-bold text-white mb-4 text-center">Escolha o valor:</p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <button onclick="copyPix()" class="bg-loomper-orange hover:bg-loomper-gold text-white font-black py-6 rounded-xl transition transform hover:scale-105 shadow-xl">
-                                <div class="text-3xl">R$ 20</div>
-                            </button>
-                            <button onclick="copyPix()" class="bg-loomper-orange hover:bg-loomper-gold text-white font-black py-6 rounded-xl transition transform hover:scale-105 shadow-xl">
-                                <div class="text-3xl">R$ 50</div>
-                            </button>
-                            <button onclick="copyPix()" class="bg-loomper-orange hover:bg-loomper-gold text-white font-black py-6 rounded-xl transition transform hover:scale-105 shadow-xl">
-                                <div class="text-3xl">R$ 75</div>
-                            </button>
-                            <button onclick="copyPix()" class="bg-white hover:bg-loomper-gold text-loomper-dark font-black py-6 rounded-xl transition transform hover:scale-105 shadow-xl">
-                                <div class="text-2xl">💛 Outro<br>valor</div>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <p class="text-center text-sm text-gray-400">
-                        🇧🇷 Toda contribuição é voluntária e fortalece o ecossistema da logística automotiva brasileira.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CADASTRO -->
-    <section id="cadastro" class="py-20 bg-gradient-to-b from-loomper-card to-loomper-dark">
-        <div class="container mx-auto px-4">
-            <!-- Título -->
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
-                    Seja um <span class="text-gradient">Pioneiro</span>
-                </h2>
-                <p class="text-xl text-gray-300">
-                    Cadastre-se agora e garanta acesso prioritário quando lançarmos
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
-                <!-- Coluna Esquerda: Imagem -->
-                <div class="order-2 md:order-1">
-                    <img src="assets/images/sejaumpioneiro-formulariodigital.png" 
-                         alt="Seja um Pioneiro" 
-                         class="w-full rounded-2xl shadow-2xl border-4 border-loomper-gold/20">
-                </div>
-                
-                <!-- Coluna Direita: Benefícios + Formulário -->
-                <div class="order-1 md:order-2 space-y-8">
-                    <!-- Card de Benefícios Compacto -->
-                    <div class="bg-gradient-to-br from-loomper-orange to-loomper-gold p-6 rounded-2xl shadow-xl">
-                        <h3 class="text-xl font-bold text-loomper-dark mb-3">🎁 Benefícios Exclusivos:</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-loomper-dark text-sm">
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-check-circle text-lg"></i>
-                                <span class="font-bold">Selo Beta Tester</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-check-circle text-lg"></i>
-                                <span class="font-bold">Prioridade 6 meses</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-check-circle text-lg"></i>
-                                <span class="font-bold">Suporte direto</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Formulário -->
-                    <form name="loomper_leads" method="POST" action="/sucesso.html" data-netlify="true" class="bg-loomper-card p-8 rounded-2xl border-2 border-loomper-gold/20 shadow-xl">
-                        <input type="hidden" name="form-name" value="loomper_leads">
-                        <input type="hidden" name="user_id" id="user_id">
-                        <input type="hidden" name="timestamp" id="timestamp">
-                        <input type="hidden" name="referrer" id="referrer">
-                        
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-bold mb-2 text-white">Nome Completo *</label>
-                                <input type="text" name="nome" required 
-                                       placeholder="Seu nome completo"
-                                       class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-bold mb-2 text-white">WhatsApp * <span class="text-gray-400 font-normal">(DDD + 8 ou 9 dígitos)</span></label>
-                                <input type="tel" name="whatsapp" id="whatsapp" required 
-                                       placeholder="(11) 99999-9999"
-                                       class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-bold mb-2 text-white">E-mail *</label>
-                                <input type="email" name="email" required 
-                                       placeholder="seu@email.com"
-                                       class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
-                            </div>
-                            
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-bold mb-2 text-white">UF *</label>
-                                    <select name="uf" id="uf" required 
-                                            class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white">
-                                        <option value="" class="bg-loomper-dark">Selecione...</option>
-                                        <option value="AC" class="bg-loomper-dark">Acre</option>
-                                        <option value="AL" class="bg-loomper-dark">Alagoas</option>
-                                        <option value="AP" class="bg-loomper-dark">Amapá</option>
-                                        <option value="AM" class="bg-loomper-dark">Amazonas</option>
-                                        <option value="BA" class="bg-loomper-dark">Bahia</option>
-                                        <option value="CE" class="bg-loomper-dark">Ceará</option>
-                                        <option value="DF" class="bg-loomper-dark">Distrito Federal</option>
-                                        <option value="ES" class="bg-loomper-dark">Espírito Santo</option>
-                                        <option value="GO" class="bg-loomper-dark">Goiás</option>
-                                        <option value="MA" class="bg-loomper-dark">Maranhão</option>
-                                        <option value="MT" class="bg-loomper-dark">Mato Grosso</option>
-                                        <option value="MS" class="bg-loomper-dark">Mato Grosso do Sul</option>
-                                        <option value="MG" class="bg-loomper-dark">Minas Gerais</option>
-                                        <option value="PA" class="bg-loomper-dark">Pará</option>
-                                        <option value="PB" class="bg-loomper-dark">Paraíba</option>
-                                        <option value="PR" class="bg-loomper-dark">Paraná</option>
-                                        <option value="PE" class="bg-loomper-dark">Pernambuco</option>
-                                        <option value="PI" class="bg-loomper-dark">Piauí</option>
-                                        <option value="RJ" class="bg-loomper-dark">Rio de Janeiro</option>
-                                        <option value="RN" class="bg-loomper-dark">Rio Grande do Norte</option>
-                                        <option value="RS" class="bg-loomper-dark">Rio Grande do Sul</option>
-                                        <option value="RO" class="bg-loomper-dark">Rondônia</option>
-                                        <option value="RR" class="bg-loomper-dark">Roraima</option>
-                                        <option value="SC" class="bg-loomper-dark">Santa Catarina</option>
-                                        <option value="SP" class="bg-loomper-dark">São Paulo</option>
-                                        <option value="SE" class="bg-loomper-dark">Sergipe</option>
-                                        <option value="TO" class="bg-loomper-dark">Tocantins</option>
-                                    </select>
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-bold mb-2 text-white">Cidade *</label>
-                                    <input type="text" name="cidade" required 
-                                           placeholder="Sua cidade"
-                                           class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-bold mb-2 text-white">Você é: *</label>
-                                <select name="perfil" required 
-                                        class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white">
-                                    <option value="" class="bg-loomper-dark">Selecione...</option>
-                                    <option value="motorista" class="bg-loomper-dark">Motorista Cegonheiro</option>
-                                    <option value="chapa" class="bg-loomper-dark">Chapa / Ajudante</option>
-                                    <option value="transportadora" class="bg-loomper-dark">Transportadora</option>
-                                    <option value="investidor" class="bg-loomper-dark">Investidor</option>
-                                    <option value="outro" class="bg-loomper-dark">Outro</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-bold mb-2 text-white">Código de Indicação <span class="text-gray-400 font-normal">(Opcional)</span></label>
-                                <input type="text" name="referral_code" 
-                                       placeholder="Código do amigo que te indicou"
-                                       class="w-full px-4 py-3 rounded-lg bg-loomper-dark border-2 border-gray-700 focus:border-loomper-gold outline-none text-white placeholder-gray-500">
-                            </div>
-                            
-                            <div class="flex items-start gap-3 bg-loomper-dark/50 p-4 rounded-lg">
-                                <input type="checkbox" name="aceite_termos" required class="mt-1 w-5 h-5">
-                                <label class="text-sm text-gray-300">
-                                    Aceito os <button type="button" onclick="openModal('modal-termos')" class="text-loomper-gold hover:underline font-bold">Termos de Uso</button> 
-                                    e <button type="button" onclick="openModal('modal-privacidade')" class="text-loomper-gold hover:underline font-bold">Política de Privacidade</button>
-                                </label>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-loomper-orange hover:bg-loomper-gold text-white font-black py-4 rounded-xl text-lg transition transform hover:scale-105 shadow-xl">
-                                🚀 ENTRAR NA LISTA
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-3xl mx-auto">
-                <!-- Título -->
-                <div class="text-center mb-12">
-                    <h2 class="text-5xl md:text-6xl font-black text-white mb-6 drop-shadow-2xl" style="text-shadow: 2px 4px 8px rgba(0,0,0,0.8);">
-                        Seja um <span class="text-gradient" style="background: linear-gradient(135deg, #F1C40F 0%, #FF8C00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Pioneiro</span>
-                    </h2>
-                    <p class="text-xl text-gray-200 drop-shadow-lg" style="text-shadow: 1px 2px 4px rgba(0,0,0,0.8);">
-                        Cadastre-se agora e garanta acesso prioritário quando lançarmos
-                    </p>
-                </div>
-                
-                <!-- Card de Benefícios - Mais compacto -->
-                <div class="bg-gradient-to-br from-loomper-orange to-loomper-gold p-6 rounded-2xl mb-8 shadow-2xl">
-                    <h3 class="text-2xl font-bold text-loomper-dark mb-4">🎁 Benefícios Exclusivos:</h3>
-                    <div class="grid md:grid-cols-3 gap-4 text-loomper-dark">
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-check-circle text-2xl"></i>
-                            <span class="font-bold">Selo Beta Tester</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-check-circle text-2xl"></i>
-                            <span class="font-bold">Prioridade 6 meses</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-check-circle text-2xl"></i>
-                            <span class="font-bold">Suporte direto</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Formulário com fundo transparente -->
-                <form name="loomper_leads" method="POST" action="/sucesso.html" data-netlify="true" class="bg-black/40 backdrop-blur-md p-8 rounded-2xl border-2 border-loomper-gold/30 shadow-2xl">
-                    <input type="hidden" name="form-name" value="loomper_leads">
-                    <input type="hidden" name="user_id" id="user_id">
-                    <input type="hidden" name="timestamp" id="timestamp">
-                    <input type="hidden" name="referrer" id="referrer">
-                    
-                    <div class="space-y-5">
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-white">Nome Completo *</label>
-                            <input type="text" name="nome" required 
-                                   class="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border-2 border-loomper-gold/30 focus:border-loomper-gold outline-none text-white placeholder-gray-400"
-                                   placeholder="Seu nome completo">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-white">WhatsApp * <span class="text-gray-300 font-normal">(DDD + 8 ou 9 dígitos)</span></label>
-                            <input type="tel" name="whatsapp" id="whatsapp" required 
-                                   placeholder="(11) 99999-9999"
-                                   class="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border-2 border-loomper-gold/30 focus:border-loomper-gold outline-none text-white placeholder-gray-400">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-white">E-mail *</label>
-                            <input type="email" name="email" required 
-                                   placeholder="seu@email.com"
-                                   class="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border-2 border-loomper-gold/30 focus:border-loomper-gold outline-none text-white placeholder-gray-400">
-                        </div>
-                        
-                        <div class="grid md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="block text-sm font-bold mb-2 text-white">Estado (UF) *</label>
-                                <select name="uf" id="uf" required 
-                                        class="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border-2 border-loomper-gold/30 focus:border-loomper-gold outline-none text-white">
-                                    <option value="" class="bg-loomper-dark">Selecione...</option>
-                                    <option value="AC" class="bg-loomper-dark">Acre</option>
-                                    <option value="AL" class="bg-loomper-dark">Alagoas</option>
-                                    <option value="AP" class="bg-loomper-dark">Amapá</option>
-                                    <option value="AM" class="bg-loomper-dark">Amazonas</option>
-                                    <option value="BA" class="bg-loomper-dark">Bahia</option>
-                                    <option value="CE" class="bg-loomper-dark">Ceará</option>
-                                    <option value="DF" class="bg-loomper-dark">Distrito Federal</option>
-                                    <option value="ES" class="bg-loomper-dark">Espírito Santo</option>
-                                    <option value="GO" class="bg-loomper-dark">Goiás</option>
-                                    <option value="MA" class="bg-loomper-dark">Maranhão</option>
-                                    <option value="MT" class="bg-loomper-dark">Mato Grosso</option>
-                                    <option value="MS" class="bg-loomper-dark">Mato Grosso do Sul</option>
-                                    <option value="MG" class="bg-loomper-dark">Minas Gerais</option>
-                                    <option value="PA" class="bg-loomper-dark">Pará</option>
-                                    <option value="PB" class="bg-loomper-dark">Paraíba</option>
-                                    <option value="PR" class="bg-loomper-dark">Paraná</option>
-                                    <option value="PE" class="bg-loomper-dark">Pernambuco</option>
-                                    <option value="PI" class="bg-loomper-dark">Piauí</option>
-                                    <option value="RJ" class="bg-loomper-dark">Rio de Janeiro</option>
-                                    <option value="RN" class="bg-loomper-dark">Rio Grande do Norte</option>
-                                    <option value="RS" class="bg-loomper-dark">Rio Grande do Sul</option>
-                                    <option value="RO" class="bg-loomper-dark">Rondônia</option>
-                                    <option value="RR" class="bg-loomper-dark">Roraima</option>
-                                    <option value="SC" class="bg-loomper-dark">Santa Catarina</option>
-                                    <option value="SP" class="bg-loomper-dark">São Paulo</option>
-                                    <option value="SE" class="bg-loomper-dark">Sergipe</option>
-                                    <option value="TO" class="bg-loomper-dark">Tocantins</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-bold mb-2 text-white">Cidade *</label>
-                                <input type="text" name="cidade" required 
-                                       placeholder="Sua cidade"
-                                       class="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border-2 border-loomper-gold/30 focus:border-loomper-gold outline-none text-white placeholder-gray-400">
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-white">Você é: *</label>
-                            <select name="perfil" required 
-                                    class="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border-2 border-loomper-gold/30 focus:border-loomper-gold outline-none text-white">
-                                <option value="" class="bg-loomper-dark">Selecione...</option>
-                                <option value="motorista" class="bg-loomper-dark">Motorista Cegonheiro</option>
-                                <option value="chapa" class="bg-loomper-dark">Chapa / Ajudante</option>
-                                <option value="transportadora" class="bg-loomper-dark">Transportadora</option>
-                                <option value="investidor" class="bg-loomper-dark">Investidor</option>
-                                <option value="outro" class="bg-loomper-dark">Outro</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold mb-2 text-white">Código de Indicação <span class="text-gray-300 font-normal">(Opcional)</span></label>
-                            <input type="text" name="referral_code" 
-                                   placeholder="Código do amigo que te indicou"
-                                   class="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border-2 border-loomper-gold/30 focus:border-loomper-gold outline-none text-white placeholder-gray-400">
-                        </div>
-                        
-                        <div class="flex items-start gap-3 bg-white/5 p-4 rounded-lg">
-                            <input type="checkbox" name="aceite_termos" required class="mt-1 w-5 h-5">
-                            <label class="text-sm text-gray-200">
-                                Aceito os <button type="button" onclick="openModal('modal-termos')" class="text-loomper-gold hover:underline font-bold">Termos de Uso</button> 
-                                e <button type="button" onclick="openModal('modal-privacidade')" class="text-loomper-gold hover:underline font-bold">Política de Privacidade</button>
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-loomper-orange hover:bg-loomper-gold text-white font-black py-5 rounded-xl text-xl transition transform hover:scale-105 shadow-2xl border-4 border-loomper-gold/30">
-                            🚀 ENTRAR NA LISTA
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-loomper-card py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <img src="assets/images/icon-l.png" alt="Loomper" class="h-10">
-                        <span class="text-2xl font-black">Loomper</span>
-                    </div>
-                    <p class="text-gray-400">
-                        Revolucionando a logística automotiva do Brasil
-                    </p>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">Links Rápidos</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#ecossistema" class="hover:text-loomper-gold transition">O Ecossistema</a></li>
-                        <li><a href="#simulador" class="hover:text-loomper-gold transition">Simulador</a></li>
-                        <li><a href="#apoie" class="hover:text-loomper-gold transition">Apoie</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">Legal</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><button onclick="openModal('modal-termos')" class="hover:text-loomper-gold transition">Termos de Uso</button></li>
-                        <li><button onclick="openModal('modal-privacidade')" class="hover:text-loomper-gold transition">Política de Privacidade</button></li>
-                        <li><a href="/cdn-cgi/l/email-protection#55393a3a382530277b342525153238343c397b363a38" class="hover:text-loomper-gold transition">Fale Conosco</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">Contato</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>
-                            <a href="https://wa.me/5511965858142" target="_blank" class="hover:text-loomper-gold transition">
-                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/cdn-cgi/l/email-protection#f995969694899c8bd7988989b99e94989095d79a9694" class="hover:text-loomper-gold transition">
-                                <i class="fas fa-envelope mr-2"></i> E-mail
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
-                <p class="mb-2">
-                    <strong>AJUD.AI BRASIL INOVA SIMPLES (I.S.)</strong><br>
-                    CNPJ: 59.150.688/0001-39
-                </p>
-                <p class="mb-4">
-                    🇧🇷 FROM BRAZIL TO WORLD
-                </p>
-                <p>© 2025 Loomper. Todos os direitos reservados.</p>
-            </div>
+        <div class="footer-note">
+            <p><strong>*Plano básico sempre gratuito para profissionais.</strong> Recursos premium opcionais para empresas.</p>
+            <p>&copy; 2025 Loomper. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/5511965858142" target="_blank" 
-       class="fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white text-3xl shadow-2xl transition z-40">
-        <i class="fab fa-whatsapp"></i>
+    <!-- ========================================
+         WHATSAPP FLUTUANTE
+    ======================================== -->
+    <a href="https://wa.me/5511965858142?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20Loomper." class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        💬
     </a>
 
-    <!-- MODALS -->
-    
-    <!-- Modal Termos -->
-    <div id="modal-termos" class="modal">
+    <!-- ========================================
+         MODAL FORMULÁRIO PIONEIRO (B2C)
+    ======================================== -->
+    <div id="modalPioneiro" class="modal">
         <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Termos de Uso</h3>
-                <button onclick="closeModal('modal-termos')" class="text-3xl hover:text-loomper-gold transition">&times;</button>
-            </div>
-            <div class="text-gray-300 space-y-4">
-                <p>Bem-vindo ao Loomper. Ao usar nossa plataforma, você concorda com os seguintes termos:</p>
-                <h4 class="font-bold text-white">1. Aceitação dos Termos</h4>
-                <p>Ao acessar e usar o Loomper, você aceita estar vinculado a estes Termos de Uso.</p>
-                <h4 class="font-bold text-white">2. Uso da Plataforma</h4>
-                <p>O Loomper conecta motoristas, chapas e transportadoras. Você se compromete a usar a plataforma de forma ética e legal.</p>
-                <h4 class="font-bold text-white">3. Privacidade</h4>
-                <p>Seus dados são protegidos conforme nossa Política de Privacidade.</p>
-                <h4 class="font-bold text-white">4. Responsabilidades</h4>
-                <p>Você é responsável por manter suas credenciais seguras e por todas as atividades em sua conta.</p>
-                <p class="text-sm text-gray-500 mt-6">Última atualização: Dezembro 2024</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal Privacidade -->
-    <div id="modal-privacidade" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Política de Privacidade</h3>
-                <button onclick="closeModal('modal-privacidade')" class="text-3xl hover:text-loomper-gold transition">&times;</button>
-            </div>
-            <div class="text-gray-300 space-y-4">
-                <p>A Loomper respeita sua privacidade e está comprometida em proteger seus dados pessoais.</p>
-                <h4 class="font-bold text-white">Coleta de Dados</h4>
-                <p>Coletamos informações como nome, e-mail, telefone e localização para conectar profissionais da logística.</p>
-                <h4 class="font-bold text-white">Uso dos Dados</h4>
-                <p>Seus dados são usados exclusivamente para operação da plataforma e não são vendidos a terceiros.</p>
-                <h4 class="font-bold text-white">Segurança</h4>
-                <p>Implementamos medidas de segurança para proteger suas informações contra acesso não autorizado.</p>
-                <h4 class="font-bold text-white">Seus Direitos</h4>
-                <p>Você tem direito de acessar, corrigir ou excluir seus dados a qualquer momento.</p>
-                <p class="text-sm text-gray-500 mt-6">Última atualização: Dezembro 2024</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal Investidor -->
-    <div id="modal-investidor" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Investidor Anjo</h3>
-                <button onclick="closeModal('modal-investidor')" class="text-3xl hover:text-loomper-gold transition">&times;</button>
-            </div>
-            <div class="text-gray-300 space-y-4">
-                <p>O Loomper está em fase de captação de investimento anjo para expansão nacional.</p>
-                <h4 class="font-bold text-white">Por que investir no Loomper?</h4>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>Mercado TAM bilionário (logística automotiva)</li>
-                    <li>Tração comprovada (+500 profissionais)</li>
-                    <li>Modelo SaaS B2B escalável</li>
-                    <li>Impacto social mensurável (ESG)</li>
-                    <li>Equipe técnica experiente</li>
-                </ul>
-                <p class="font-bold text-loomper-gold">Para solicitar nosso Pitch Deck completo:</p>
-                <a href="/cdn-cgi/l/email-protection#0b6864657f6a7f644b676464667b6e792568646625697934787e69616e687f3658647e2b42455d4e585f424f44592b4a4541442b262b5864676268627f6ac8acc8a8642b6f6e2b5b627f68632b4f6e68602d69646f72364467c8aa2b6e7a7e627b6e2b476464667b6e79272e3b4f2e3b4a2e3b4f2e3b4a5f6e6563642b62657f6e796e78786e2b6e662b686465636e686e792b666a62782b786469796e2b6a2b647b64797f7e65626f6a6f6e2b6f6e2b62657d6e787f62666e657f64252e3b4f2e3b4a2e3b4f2e3b4a5b64792b6d6a7d6479272b6e657d626e662b642b5b627f68632b4f6e68602b6e2b642b454f4a2b7b6a796a2b6a65c8aa6762786e252e3b4f2e3b4a2e3b4f2e3b4a4a7f6e65686264786a666e657f6e" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
-                    Solicitar Pitch Deck
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal Governo -->
-    <div id="modal-governo" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Parceria com Governo</h3>
-                <button onclick="closeModal('modal-governo')" class="text-3xl hover:text-loomper-gold transition">&times;</button>
-            </div>
-            <div class="text-gray-300 space-y-4">
-                <p>O Loomper pode ajudar o poder público com dados estratégicos para políticas públicas.</p>
-                <h4 class="font-bold text-white">Benefícios para o Governo:</h4>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>Formalização do mercado de chapas</li>
-                    <li>Geração de empregos digitais formais</li>
-                    <li>Dados para políticas públicas de transporte</li>
-                    <li>Redução da informalidade no setor</li>
-                    <li>Impacto social mensurável (ESG)</li>
-                </ul>
-                <p class="font-bold text-loomper-gold">Entre em contato:</p>
-                <a href="/cdn-cgi/l/email-protection#1e7d71706a7f6a715e727171736e7b6c307d7173307c6c216d6b7c747b7d6a234d716b3e5951485b4c50513e333e4d7172777d776a7fddb9ddbd713e7a7b3e5a7f7a716d3e4d717d777f776d387c717a67235172ddbf3e7b6f6b776e7b3e527171736e7b6c323b2e5a3b2e5f3b2e5a3b2e5f4a7b73716d3e77706a7b6c7b6d6d7b3e7b733e7d7170767b7d7b6c3e716d3e7a7f7a716d3e6d717d777f776d3e7b3e77736e7f7d6a713e7a713e527171736e7b6c3e6e7f6c7f3e7f70ddbf72776d7b3e7a7b3e6e7172ddb36a777d7f6d3e6edda47c72777d7f6d303b2e5a3b2e5f3b2e5a3b2e5f4e716c3e787f68716c323e7b7068777b733e713e505a5f3e7b3e737f6a7b6c777f776d3e7a776d6e7170ddb3687b776d303b2e5a3b2e5f3b2e5a3b2e5f5f6a7b707d77716d7f737b706a7b" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
-                    Solicitar Dados
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal Montadoras -->
-    <div id="modal-montadoras" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Integração com Montadoras</h3>
-                <button onclick="closeModal('modal-montadoras')" class="text-3xl hover:text-loomper-gold transition">&times;</button>
-            </div>
-            <div class="text-gray-300 space-y-4">
-                <p>O Loomper oferece API de integração para montadoras otimizarem a última milha da logística automotiva.</p>
-                <h4 class="font-bold text-white">Benefícios:</h4>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>Rastreamento em tempo real da última milha</li>
-                    <li>Satisfação do cliente final aumentada</li>
-                    <li>Redução de sinistros com profissionais qualificados</li>
-                    <li>Integração via API REST</li>
-                    <li>Dashboard executivo customizado</li>
-                </ul>
-                <p class="font-bold text-loomper-gold">Agende uma demonstração:</p>
-                <a href="/cdn-cgi/l/email-protection#70131f1e0411041f301c1f1f1d0015025e131f1d5e12024f0305121a1513044d231f05503d3f3e2431343f2231505d50231f1c1913190411b3d7b3d31f5014155034151d1f1e03040211b3d7b3d31f56121f14094d3f1cb3d150150105190015503c1f1f1d0015025c55403455403155403455403124151d1f0350191e0415021503031550151d50131f1e1815131502501150191e0415170211b3d7b3d31f50312039500011021150b3ca1c04191d11501d191c1811501105041f1d1f041906115e554034554031554034554031201f02501611061f025c501117151e14151d50051d115014151d1f1e03040211b3d7b3d31f501550151e0619151d501f503e34315e5540345540315540345540313104151e13191f03111d151e0415" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
-                    Agendar Demo
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal Seguradoras -->
-    <div id="modal-seguradoras" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Parceria com Seguradoras</h3>
-                <button onclick="closeModal('modal-seguradoras')" class="text-3xl hover:text-loomper-gold transition">&times;</button>
-            </div>
-            <div class="text-gray-300 space-y-4">
-                <p>Profissionais qualificados reduzem sinistros. O Loomper oferece dados comportamentais para precificação dinâmica.</p>
-                <h4 class="font-bold text-white">Benefícios:</h4>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>Redução de sinistros com profissionais qualificados</li>
-                    <li>Dados comportamentais em tempo real</li>
-                    <li>Precificação dinâmica de apólices</li>
-                    <li>Score de risco por profissional</li>
-                    <li>Integração via API</li>
-                </ul>
-                <p class="font-bold text-loomper-gold">Saiba mais:</p>
-                <a href="/cdn-cgi/l/email-protection#583b37362c392c371834373735283d2a763b3735763a2a672b2d3a323d3b2c650b372d780b1d1f0d0a191c170a1978757811362c3d2a3d2b2b3d783d357808392a3b3d2a31397e3a373c216517349bf9783d292d31283d7814373735283d2a747d681c7d68197d681c7d68190c3d35372b7831362c3d2a3d2b2b3d783d35783b3736303d3b3d2a78372b783a3d363d3e9bf53b31372b783d783c393c372b783b373528372a2c39353d362c39312b7828392a3978282a3d3b313e313b399bff9bfb37783c3d7839289beb34313b3d2b767d681c7d68197d681c7d681908372a783e392e372a74783d362e313d35783778161c19783d7835392c3d2a3139312b783c3d7828392a3b3d2a3139767d681c7d68197d681c7d6819192c3d363b31372b39353d362c3d" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
-                    Conhecer Benefícios
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal Transportadoras -->
-    <div id="modal-transportadoras" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Solução para Transportadoras</h3>
-                <button onclick="closeModal('modal-transportadoras')" class="text-3xl hover:text-loomper-gold transition">&times;</button>
-            </div>
-            <div class="text-gray-300 space-y-4">
-                <p>O Loomper oferece dashboard executivo completo para otimização total da operação.</p>
-                <h4 class="font-bold text-white">Funcionalidades:</h4>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>Gestão de frota em tempo real</li>
-                    <li>Relatórios ESG automáticos</li>
-                    <li>Compliance OEA facilitado</li>
-                    <li>Dashboard executivo customizado</li>
-                    <li>ROI mensurável e comprovado</li>
-                </ul>
-                <p class="font-bold text-loomper-gold">Agende uma demonstração:</p>
-                <a href="/cdn-cgi/l/email-protection#197a76776d786d765975767674697c6b377a7674377b6b266a6c7b737c7a6d244a766c394d4b58574a49564b4d585d564b5839343950776d7c6b7c6a6a7c397c74394a76756cdabedaba763f7b767d60245675dab8397c686c70697c3955767674697c6b353c295d3c29583c295d3c29584d7c74766a3970776d7c6b7c6a6a7c397c74397a7677717c7a7c6b3978396a76756cdabedaba76397a767469757c6d78397d7c397e7c6a6ddaba76397d7c397f6b766d78397c397a767469757078777a7c373c295d3c29583c295d3c295849766b397f786f766b3539787e7c777d7c74396c7478397d7c7476776a6d6b78dabedaba76397c397c776f707c74397639575d58373c295d3c29583c295d3c2958586d7c777a70766a78747c776d7c" class="inline-block bg-loomper-orange hover:bg-loomper-gold text-white font-bold px-6 py-3 rounded-lg transition mt-4">
-                    Ver Demonstração
-                </a>
-            </div>
+            <button class="modal-close" onclick="closeModal('pioneiro')">&times;</button>
+            <h2>Seja um Pioneiro</h2>
+            <p>Cadastre-se agora e garanta acesso prioritário!</p>
+
+            <form id="formPioneiro" name="pioneiro" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/sucesso.html">
+                <input type="hidden" name="form-name" value="pioneiro">
+                <input type="hidden" name="bot-field">
+
+                <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <span class="error-message">Por favor, insira seu nome completo</span>
+                </div>
+
+                <div class="whatsapp-container">
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp *</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+55 (11) 99999-9999" required>
+                        <span class="error-message">WhatsApp inválido</span>
+                    </div>
+                    <button type="button" class="btn-test-whatsapp" onclick="testWhatsApp()" title="Testar WhatsApp">📞</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message">E-mail inválido</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado">Estado (UF) *</label>
+                    <select id="estado" name="estado" required>
+                        <option value="">Selecione seu estado</option>
+                    </select>
+                    <span class="error-message">Selecione seu estado</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="cidade">Cidade *</label>
+                    <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade..." autocomplete="off" required>
+                    <div id="cidadeSuggestions"></div>
+                    <span class="error-message">Selecione sua cidade</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="perfil">Você é: *</label>
+                    <select id="perfil" name="perfil" required>
+                        <option value="">Selecione seu perfil</option>
+                        <option value="motorista">Motorista Cegonheiro</option>
+                        <option value="chapa">Chapa/Ajudante</option>
+                        <option value="transportadora">Transportadora</option>
+                        <option value="montadora">Montadora</option>
+                        <option value="seguradora">Seguradora</option>
+                        <option value="governo">Governo/Órgão Público</option>
+                        <option value="investidor">Investidor</option>
+                    </select>
+                    <span class="error-message">Selecione seu perfil</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="codigo">Código de Indicação (Opcional)</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="Código do amigo que te indicou">
+                </div>
+
+                <button type="submit" class="btn-submit">QUERO SER PIONEIRO</button>
+            </form>
         </div>
     </div>
 
-    <!-- JAVASCRIPT -->
+    <!-- ========================================
+         MODAL FORMULÁRIO B2B (Stakeholders)
+    ======================================== -->
+    <div id="modalB2B" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('b2b')">&times;</button>
+            <h2 id="b2bTitle">Transportadora</h2>
+            <p id="b2bDescription">Descubra como transformamos sua operação com eficiência e inteligência.</p>
+
+            <form id="formB2B" name="stakeholder-b2b" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="stakeholder-b2b">
+                <input type="hidden" name="bot-field">
+                <input type="hidden" name="tipo-stakeholder" id="tipoStakeholder">
+
+                <div class="form-group">
+                    <label for="nomeB2B">Nome Completo *</label>
+                    <input type="text" id="nomeB2B" name="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cargoB2B">Cargo *</label>
+                    <input type="text" id="cargoB2B" name="cargo" placeholder="Ex: Diretor de Operações" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="empresaB2B">Empresa/Órgão *</label>
+                    <input type="text" id="empresaB2B" name="empresa" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailB2B">Email Corporativo *</label>
+                    <input type="email" id="emailB2B" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefoneB2B">Telefone *</label>
+                    <input type="tel" id="telefoneB2B" name="telefone" placeholder="+55 (11) 99999-9999" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="horarioB2B">Melhor horário para contato *</label>
+                    <select id="horarioB2B" name="horario" required>
+                        <option value="">Selecione</option>
+                        <option value="manha">Manhã (9h-12h)</option>
+                        <option value="tarde">Tarde (14h-17h)</option>
+                        <option value="flexivel">Flexível</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">AGENDAR DEMONSTRAÇÃO</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================
+         MODAL FORMULÁRIO INVESTIDOR
+    ======================================== -->
+    <div id="modalInvestidor" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('investidor')">&times;</button>
+            <h2>Investidor Anjo</h2>
+            <p>O Loomper está revolucionando a logística automotiva no Brasil, um mercado bilionário e ainda inexplorado adequadamente.</p>
+
+            <div style="background-color: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <h3 style="margin-bottom: 15px;">Por que investir no Loomper?</h3>
+                <ul style="text-align: left; list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;">• Mercado bilionário em expansão</li>
+                    <li style="margin-bottom: 10px;">• Setor dinâmico e subatendido digitalmente</li>
+                    <li style="margin-bottom: 10px;">• Potencial de escala nacional e LATAM em até 5 anos</li>
+                    <li style="margin-bottom: 10px;">• Modelo SaaS B2B escalável</li>
+                    <li style="margin-bottom: 10px;">• Retorno projetado em ~18 meses</li>
+                    <li style="margin-bottom: 10px;">• Impacto social mensurável (ESG)</li>
+                </ul>
+            </div>
+
+            <form id="formInvestidor" name="investidor" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="investidor">
+                <input type="hidden" name="bot-field">
+
+                <div class="form-group">
+                    <label for="nomeInv">Nome Completo *</label>
+                    <input type="text" id="nomeInv" name="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailInv">Email *</label>
+                    <input type="email" id="emailInv" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefoneInv">Telefone *</label>
+                    <input type="tel" id="telefoneInv" name="telefone" placeholder="+55 (11) 99999-9999" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipoInvestidor">Tipo de Investidor *</label>
+                    <select id="tipoInvestidor" name="tipo-investidor" required>
+                        <option value="">Selecione</option>
+                        <option value="anjo">Investidor Anjo</option>
+                        <option value="vc">Fundo de Venture Capital</option>
+                        <option value="family">Family Office</option>
+                        <option value="corporate">Corporate Venture</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ticketMedio">Ticket Médio *</label>
+                    <select id="ticketMedio" name="ticket-medio" required>
+                        <option value="">Selecione</option>
+                        <option value="ate500k">Até R$ 500k</option>
+                        <option value="500k-2m">R$ 500k - R$ 2M</option>
+                        <option value="acima2m">Acima de R$ 2M</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">SOLICITAR PITCH DECK + NDA</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Generate User ID
-        function generateUserId() {
-            return 'USER_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-        }
+        // ========================================
+        // MENU HAMBÚRGUER
+        // ========================================
+        const menuToggle = document.getElementById('menuToggle');
+        const menuOverlay = document.getElementById('menuOverlay');
 
-        // Initialize form tracking
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set tracking fields
-            document.getElementById('user_id').value = generateUserId();
-            document.getElementById('timestamp').value = new Date().toISOString();
-            document.getElementById('referrer').value = document.referrer || 'direct';
-            
-            // WhatsApp mask
-            const whatsappInput = document.getElementById('whatsapp');
-            whatsappInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length <= 11) {
-                    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-                    value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-                }
-                e.target.value = value;
-            });
-            
-            // Navbar scroll effect
-            window.addEventListener('scroll', function() {
-                const navbar = document.getElementById('navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('navbar-scroll');
-                } else {
-                    navbar.classList.remove('navbar-scroll');
-                }
+        menuToggle.addEventListener('click', () => {
+            menuOverlay.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em link
+        menuOverlay.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOverlay.classList.remove('active');
             });
         });
 
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+        // ========================================
+        // TABS "COMO FUNCIONA"
+        // ========================================
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const fluxoImagem = document.getElementById('fluxoImagem');
+        const passosMotorista = document.getElementById('passos-motorista');
+        const passosChapa = document.getElementById('passos-chapa');
+        const passosTransportadora = document.getElementById('passos-transportadora');
 
-        // Smooth scroll functions
-        function scrollToCadastro() {
-            document.getElementById('cadastro').scrollIntoView({ behavior: 'smooth' });
-            // Close mobile menu if open
-            document.getElementById('mobile-menu').classList.add('hidden');
-        }
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active de todos
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-        function scrollToSimulador() {
-            document.getElementById('simulador').scrollIntoView({ behavior: 'smooth' });
-            document.getElementById('mobile-menu').classList.add('hidden');
-        }
+                // Esconde todos os passos
+                passosMotorista.classList.add('hidden');
+                passosChapa.classList.add('hidden');
+                passosTransportadora.classList.add('hidden');
 
-        // Tab switching
-        function setActiveTab(tab) {
-            // Remove active from all tabs
-            document.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-                btn.classList.add('bg-loomper-card');
-            });
-            
-            // Remove active from all content
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Add active to selected tab
-            document.getElementById('tab-' + tab).classList.add('active');
-            document.getElementById('tab-' + tab).classList.remove('bg-loomper-card');
-            
-            // Show selected content
-            document.getElementById('content-' + tab).classList.add('active');
-            
-            // Scroll to simulator
-            document.getElementById('simulador').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Modal functions
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal on outside click
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    closeModal(modal.id);
+                // Mostra o selecionado
+                const tab = btn.dataset.tab;
+                if (tab === 'motorista') {
+                    passosMotorista.classList.remove('hidden');
+                    fluxoImagem.src = 'assets/images/comofunciona_motorista.png';
+                    fluxoImagem.alt = 'Fluxo Motorista';
+                } else if (tab === 'chapa') {
+                    passosChapa.classList.remove('hidden');
+                    fluxoImagem.src = 'assets/images/comofunciona_chapa.png';
+                    fluxoImagem.alt = 'Fluxo Chapa';
+                } else if (tab === 'transportadora') {
+                    passosTransportadora.classList.remove('hidden');
+                    fluxoImagem.src = 'assets/images/comofunciona_transportadora.png';
+                    fluxoImagem.alt = 'Fluxo Transportadora';
                 }
             });
         });
 
-        // Copy PIX
-        function copyPix() {
-            const pix = 'loomper.app@gmail.com';
-            navigator.clipboard.writeText(pix).then(() => {
-                // Visual feedback
-                const btn = event.target.closest('button');
+        // ========================================
+        // MODAIS
+        // ========================================
+        function openModal(type) {
+            if (type === 'pioneiro') {
+                document.getElementById('modalPioneiro').classList.add('active');
+            } else if (type === 'investidor') {
+                document.getElementById('modalInvestidor').classList.add('active');
+            } else if (type.includes('b2b') || type === 'transportadora-b2b' || type === 'montadora' || type === 'seguradora' || type === 'governo') {
+                openB2BModal(type);
+            }
+        }
+
+        function closeModal(type) {
+            if (type === 'pioneiro') {
+                document.getElementById('modalPioneiro').classList.remove('active');
+            } else if (type === 'b2b') {
+                document.getElementById('modalB2B').classList.remove('active');
+            } else if (type === 'investidor') {
+                document.getElementById('modalInvestidor').classList.remove('active');
+            }
+        }
+
+        function openB2BModal(type) {
+            const modal = document.getElementById('modalB2B');
+            const title = document.getElementById('b2bTitle');
+            const description = document.getElementById('b2bDescription');
+            const tipoInput = document.getElementById('tipoStakeholder');
+
+            const configs = {
+                'transportadora-b2b': {
+                    title: 'Transportadoras',
+                    description: 'Gerencie toda operação em uma única plataforma. Conecte-se a motoristas qualificados, otimize custos e tenha relatórios ESG automatizados.'
+                },
+                'montadora': {
+                    title: 'Montadoras',
+                    description: 'Conecte sua produção diretamente aos transportadores, otimize logística de distribuição e ganhe visibilidade total da jornada dos seus veículos.'
+                },
+                'seguradora': {
+                    title: 'Seguradoras',
+                    description: 'Reduza sinistralidade, acelere processos e ofereça produtos personalizados com dados reais do transporte automotivo.'
+                },
+                'governo': {
+                    title: 'Governo e Órgãos Públicos',
+                    description: 'Dados estruturados para políticas públicas eficientes. Rastreamento em tempo real para segurança viária. Compliance automatizado.'
+                }
+            };
+
+            const config = configs[type] || configs['transportadora-b2b'];
+            title.textContent = config.title;
+            description.textContent = config.description;
+            tipoInput.value = type;
+
+            modal.classList.add('active');
+        }
+
+        // Fechar modal ao clicar fora
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        }
+
+        // ========================================
+        // API IBGE - ESTADO E CIDADE
+        // ========================================
+        const estadoSelect = document.getElementById('estado');
+        const cidadeInput = document.getElementById('cidade');
+        const cidadeSuggestions = document.getElementById('cidadeSuggestions');
+        let cidadesData = [];
+
+        // Lista de estados brasileiros
+        const estados = [
+            {sigla: 'AC', nome: 'Acre'}, {sigla: 'AL', nome: 'Alagoas'}, {sigla: 'AP', nome: 'Amapá'},
+            {sigla: 'AM', nome: 'Amazonas'}, {sigla: 'BA', nome: 'Bahia'}, {sigla: 'CE', nome: 'Ceará'},
+            {sigla: 'DF', nome: 'Distrito Federal'}, {sigla: 'ES', nome: 'Espírito Santo'}, {sigla: 'GO', nome: 'Goiás'},
+            {sigla: 'MA', nome: 'Maranhão'}, {sigla: 'MT', nome: 'Mato Grosso'}, {sigla: 'MS', nome: 'Mato Grosso do Sul'},
+            {sigla: 'MG', nome: 'Minas Gerais'}, {sigla: 'PA', nome: 'Pará'}, {sigla: 'PB', nome: 'Paraíba'},
+            {sigla: 'PR', nome: 'Paraná'}, {sigla: 'PE', nome: 'Pernambuco'}, {sigla: 'PI', nome: 'Piauí'},
+            {sigla: 'RJ', nome: 'Rio de Janeiro'}, {sigla: 'RN', nome: 'Rio Grande do Norte'}, {sigla: 'RS', nome: 'Rio Grande do Sul'},
+            {sigla: 'RO', nome: 'Rondônia'}, {sigla: 'RR', nome: 'Roraima'}, {sigla: 'SC', nome: 'Santa Catarina'},
+            {sigla: 'SP', nome: 'São Paulo'}, {sigla: 'SE', nome: 'Sergipe'}, {sigla: 'TO', nome: 'Tocantins'}
+        ];
+
+        // Popula dropdown de estados
+        estados.forEach(estado => {
+            const option = document.createElement('option');
+            option.value = estado.sigla;
+            option.textContent = estado.nome;
+            estadoSelect.appendChild(option);
+        });
+
+        // Buscar cidades ao selecionar estado
+        estadoSelect.addEventListener('change', async function() {
+            const uf = this.value;
+            cidadeInput.value = '';
+            cidadeSuggestions.style.display = 'none';
+            cidadesData = [];
+
+            if (!uf) {
+                cidadeInput.disabled = true;
+                return;
+            }
+
+            cidadeInput.disabled = false;
+            cidadeInput.placeholder = 'Carregando cidades...';
+
+            try {
+                const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`);
+                const cidades = await response.json();
+                
+                cidadesData = cidades.map(c => c.nome).sort();
+                cidadeInput.placeholder = 'Digite sua cidade...';
+            } catch (error) {
+                console.error('Erro ao buscar cidades:', error);
+                cidadeInput.placeholder = 'Erro ao carregar. Digite manualmente.';
+            }
+        });
+
+        // Autocomplete de cidades
+        cidadeInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            cidadeSuggestions.innerHTML = '';
+
+            if (!query || cidadesData.length === 0) {
+                cidadeSuggestions.style.display = 'none';
+                return;
+            }
+
+            const filtered = cidadesData.filter(cidade => 
+                cidade.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(query)
+            ).slice(0, 10);
+
+            if (filtered.length > 0) {
+                filtered.forEach(cidade => {
+                    const div = document.createElement('div');
+                    div.className = 'cidade-suggestion';
+                    div.textContent = cidade;
+                    div.onclick = () => {
+                        cidadeInput.value = cidade;
+                        cidadeSuggestions.style.display = 'none';
+                    };
+                    cidadeSuggestions.appendChild(div);
+                });
+                cidadeSuggestions.style.display = 'block';
+            } else {
+                cidadeSuggestions.style.display = 'none';
+            }
+        });
+
+        // Fechar sugestões ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!cidadeInput.contains(e.target) && !cidadeSuggestions.contains(e.target)) {
+                cidadeSuggestions.style.display = 'none';
+            }
+        });
+
+        // ========================================
+        // WHATSAPP - MÁSCARA E VALIDAÇÃO
+        // ========================================
+        const whatsappInput = document.getElementById('whatsapp');
+
+        whatsappInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            // Adiciona +55 automaticamente
+            if (!value.startsWith('55')) {
+                value = '55' + value;
+            }
+
+            // Limita a 13 dígitos (55 + 11 dígitos)
+            value = value.slice(0, 13);
+
+            // Aplica máscara: +55 (11) 99999-9999
+            let formatted = '+55';
+            if (value.length > 2) {
+                formatted += ' (' + value.slice(2, 4);
+                if (value.length > 4) {
+                    formatted += ') ' + value.slice(4, 9);
+                    if (value.length > 9) {
+                        formatted += '-' + value.slice(9, 13);
+                    }
+                }
+            }
+
+            e.target.value = formatted;
+        });
+
+        // Validar WhatsApp
+        function validateWhatsApp(phone) {
+            const cleaned = phone.replace(/\D/g, '');
+            if (cleaned.length !== 13) return false; // +55 + 11 dígitos
+            
+            const ddd = parseInt(cleaned.slice(2, 4));
+            return ddd >= 11 && ddd <= 99; // DDD válido
+        }
+
+        // Testar WhatsApp
+        function testWhatsApp() {
+            const phone = whatsappInput.value;
+            if (!validateWhatsApp(phone)) {
+                alert('Por favor, insira um WhatsApp válido com DDD.');
+                return;
+            }
+
+            const cleaned = phone.replace(/\D/g, '');
+            const url = `https://wa.me/${cleaned}?text=Olá!%20Testando%20meu%20WhatsApp%20para%20cadastro%20no%20Loomper.`;
+            window.open(url, '_blank');
+        }
+
+        // ========================================
+        // EMAIL - VALIDAÇÃO
+        // ========================================
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // ========================================
+        // TROCA DINÂMICA DE FORMULÁRIO
+        // ========================================
+        const perfilSelect = document.getElementById('perfil');
+
+        perfilSelect.addEventListener('change', function() {
+            const value = this.value;
+            const b2bProfiles = ['montadora', 'seguradora', 'governo'];
+            
+            if (b2bProfiles.includes(value)) {
+                // Fecha modal pioneiro e abre B2B
+                closeModal('pioneiro');
+                setTimeout(() => {
+                    openB2BModal(value);
+                }, 300);
+            } else if (value === 'investidor') {
+                closeModal('pioneiro');
+                setTimeout(() => {
+                    openModal('investidor');
+                }, 300);
+            }
+        });
+
+        // ========================================
+        // VALIDAÇÃO DE FORMULÁRIOS
+        // ========================================
+        document.getElementById('formPioneiro').addEventListener('submit', function(e) {
+            let isValid = true;
+            const form = this;
+
+            // Remove erros anteriores
+            form.querySelectorAll('.form-group').forEach(group => {
+                group.classList.remove('error');
+            });
+
+            // Valida nome
+            const nome = document.getElementById('nome');
+            if (nome.value.trim().length < 3) {
+                nome.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+
+            // Valida WhatsApp
+            const whatsapp = document.getElementById('whatsapp');
+            if (!validateWhatsApp(whatsapp.value)) {
+                whatsapp.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+
+            // Valida email
+            const email = document.getElementById('email');
+            if (!validateEmail(email.value)) {
+                email.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+
+            // Valida estado
+            const estado = document.getElementById('estado');
+            if (!estado.value) {
+                estado.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+
+            // Valida cidade
+            const cidade = document.getElementById('cidade');
+            if (cidade.value.trim().length < 2) {
+                cidade.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+
+            // Valida perfil
+            const perfil = document.getElementById('perfil');
+            if (!perfil.value) {
+                perfil.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                e.preventDefault();
+                alert('Por favor, preencha todos os campos corretamente.');
+            }
+        });
+
+        // ========================================
+        // COPIAR CHAVE PIX
+        // ========================================
+        function copyPixKey() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            navigator.clipboard.writeText(pixKey).then(() => {
+                const btn = document.querySelector('.btn-copy-pix');
                 const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-                btn.classList.add('bg-green-500');
+                btn.innerHTML = '✓ Chave Copiada!';
+                btn.style.backgroundColor = '#25d366';
                 
                 setTimeout(() => {
                     btn.innerHTML = originalText;
-                    btn.classList.remove('bg-green-500');
+                    btn.style.backgroundColor = '';
                 }, 2000);
-                
-                // Alert como backup
-                alert('✅ Chave PIX copiada!\n\nloomper.app@gmail.com\n\nAgora é só colar no seu app de banco e fazer a transferência. Obrigado por apoiar quem move o Brasil! 🇧🇷');
-            }).catch(() => {
-                // Fallback se clipboard API falhar
-                alert('📌Chave PIX: loomper.app@gmail.com\n\nCopie manualmente e cole no seu app de banco.');
             });
         }
 
-        // Close mobile menu on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.add('hidden');
+        // ========================================
+        // SELECIONAR VALOR DE DOAÇÃO
+        // ========================================
+        function selectValue(value) {
+            copyPixKey();
+            if (value === 'outro') {
+                alert('Chave PIX copiada! Você pode enviar qualquer valor. 🙏');
+            } else {
+                alert(`Chave PIX copiada! Sugestão: R$ ${value},00. Obrigado! 🙏`);
+            }
+        }
+
+        // ========================================
+        // SCROLL SUAVE
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
     </script>
+
 </body>
 </html>
